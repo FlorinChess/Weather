@@ -1,0 +1,79 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows10.0.20348.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <PackageIcon></PackageIcon>
+    <ApplicationIcon>Icons\weather.ico</ApplicationIcon>
+    <SignAssembly>False</SignAssembly>
+    <Authors>$(AssemblyName)</Authors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Icons\clear.png" />
+    <None Remove="Icons\cloudy.png" />
+    <None Remove="Icons\fog.png" />
+    <None Remove="Icons\heavy_patchy_rain.png" />
+    <None Remove="Icons\heavy_patchy_rain_with_thunder.png" />
+    <None Remove="Icons\heavy_rain.png" />
+    <None Remove="Icons\heavy_rain_with_thunder.png" />
+    <None Remove="Icons\ko-fi_icon.png" />
+    <None Remove="Icons\light_patchy_rain.png" />
+    <None Remove="Icons\light_patchy_rain_with_thunder.png" />
+    <None Remove="Icons\light_rain.png" />
+    <None Remove="Icons\mist.png" />
+    <None Remove="Icons\partly_cloudy.png" />
+    <None Remove="Icons\patchy_snow.png" />
+    <None Remove="Icons\snow.png" />
+    <None Remove="Icons\sunny.png" />
+    <None Remove="Icons\thundery.png" />
+    <None Remove="Icons\weather.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Icons\weather.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Weather.Core\Weather.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Icons\clear.png" />
+    <Resource Include="Icons\cloudy.png" />
+    <Resource Include="Icons\fog.png" />
+    <Resource Include="Icons\heavy_patchy_rain.png" />
+    <Resource Include="Icons\heavy_patchy_rain_with_thunder.png" />
+    <Resource Include="Icons\heavy_rain.png" />
+    <Resource Include="Icons\heavy_rain_with_thunder.png" />
+    <Resource Include="Icons\ko-fi_icon.png" />
+    <Resource Include="Icons\light_patchy_rain.png" />
+    <Resource Include="Icons\light_patchy_rain_with_thunder.png" />
+    <Resource Include="Icons\light_rain.png" />
+    <Resource Include="Icons\mist.png" />
+    <Resource Include="Icons\partly_cloudy.png" />
+    <Resource Include="Icons\patchy_snow.png" />
+    <Resource Include="Icons\snow.png" />
+    <Resource Include="Icons\sunny.png" />
+    <Resource Include="Icons\thundery.png" />
+    <Resource Include="Icons\weather.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+</Project>

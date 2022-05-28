@@ -1,0 +1,69 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <!-- Order is important -->
+        <ResourceDictionary Source="Colors.xaml" />
+        <ResourceDictionary Source="Fonts.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    
+    <!-- Material Design Title -->
+    <Style TargetType="{x:Type TextBlock}" x:Key="TitleTextBlock">
+        <Setter Property="Foreground" Value="{StaticResource ForegroundLightBrush}" />
+        <Setter Property="FontSize" Value="50" />
+        <Setter Property="FontWeight" Value="Light" />
+    </Style>
+
+    <!-- Material Design headline 3 -->
+    <Style TargetType="{x:Type TextBlock}" x:Key="Headline3TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource ForegroundLightBrush}" />
+        <Setter Property="FontSize" Value="42" />
+    </Style>
+
+    <!-- Material Design headline 4 -->
+    <Style TargetType="{x:Type TextBlock}" x:Key="Headline4TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource ForegroundLightBrush}" />
+        <Setter Property="FontSize" Value="30" />
+    </Style>
+
+    <!-- Material Design headline 5 -->
+    <Style TargetType="{x:Type TextBlock}" x:Key="Headline5TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource ForegroundLightBrush}" />
+        <Setter Property="FontSize" Value="20" />
+    </Style>
+
+    <!-- Material Design headline 6 -->
+    <Style TargetType="{x:Type TextBlock}" x:Key="Headline6TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource ForegroundLightBrush}" />
+        <Setter Property="FontSize" Value="18" />
+    </Style>
+
+    <!-- Material Design subtitle 1 -->
+    <Style TargetType="{x:Type TextBlock}" x:Key="Subtitle1TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource ForegroundLightBrush}" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontWeight" Value="Light" />
+    </Style>
+    
+    <!-- Material Design body 1 -->
+    <Style TargetType="{x:Type TextBlock}" x:Key="Body1TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource ForegroundLightBrush}" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="Padding" Value="20 0" />
+    </Style>
+    
+    <!-- Material Design body 2 -->
+    <Style TargetType="{x:Type TextBlock}" x:Key="Body2TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource ForegroundMainBrush}" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="Padding" Value="20 0" />
+    </Style>
+
+    <!-- Material Design caption -->
+    <Style TargetType="{x:Type TextBlock}" x:Key="CaptionTextBlock">
+        <Setter Property="Foreground" Value="{StaticResource ForegroundMainBrush}" />
+        <Setter Property="FontSize" Value="12" />
+    </Style>
+
+</ResourceDictionary>

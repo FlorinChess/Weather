@@ -1,0 +1,86 @@
+﻿<UserControl x:Class="Weather.Views.SettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Weather.Views"
+             xmlns:viewmodels="clr-namespace:Weather.ViewModels"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance {x:Type viewmodels:SettingsViewModel}, IsDesignTimeCreatable=False}"
+             d:DesignHeight="650" d:DesignWidth="800">    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <TextBlock 
+            Text="Settings" 
+            Padding="20 10" 
+            Style="{StaticResource TitleTextBlock}"              
+            />
+        <TextBlock 
+            Grid.Row="1"
+            Text="Weather location (city)"
+            Style="{StaticResource Headline5TextBlock}"
+            Padding="20 15"
+            />
+
+        <TextBox 
+            Grid.Column="1"
+            Grid.Row="1"
+            Style="{StaticResource MaterialSettingsTextBox}"
+            />
+        
+        <TextBlock
+            Grid.Row="2"
+            Text="Measurement Units"
+            Style="{StaticResource Headline5TextBlock}"
+            Padding="20 15"
+            />
+
+        <StackPanel
+            Grid.Row="2"
+            Grid.Column="1"
+            Orientation="Horizontal"
+            VerticalAlignment="Center"
+            Margin="20">
+            
+            <CheckBox 
+                Content="°F, in, mph" 
+                IsChecked="{Binding IsImperialSystemEnabled}"
+                />
+            <CheckBox  
+                Content="°C, mm, kph" Margin="30 0"
+                IsChecked="{Binding IsMetricSystemEnabled}"
+                />
+        </StackPanel>
+
+        <StackPanel 
+            Grid.Row="4" 
+            Grid.ColumnSpan="2" 
+            Orientation="Horizontal" 
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom">
+            <Button 
+                Style="{StaticResource MaterialOutlinedButton}"
+                Command="{Binding CancelCommand}"
+                Content="CANCEL"
+                Margin="10"
+                />
+            <Button 
+                Style="{StaticResource MaterialContainedButton}"
+                Command="{Binding SaveSettingsCommand}"
+                Content="SAVE"
+                Margin="10"
+                />
+        </StackPanel>
+    </Grid>
+</UserControl>
