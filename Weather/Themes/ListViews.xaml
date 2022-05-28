@@ -5,6 +5,7 @@
         <!-- Order is important -->
         <ResourceDictionary Source="Colors.xaml" />
         <ResourceDictionary Source="Fonts.xaml" />
+        <ResourceDictionary Source="TextBlocks.xaml" />
     </ResourceDictionary.MergedDictionaries>
     
     <!-- ListView that hosts the weather cards ordered by day --><!--

@@ -194,14 +194,20 @@
                             Text="Wind"
                             Foreground="LightGray"/>
                     </StackPanel>
-
-                    <TextBlock
+                    <StackPanel
                         Grid.Column="2"
                         Grid.Row="1"
-                        Text="{Binding WindDirection, FallbackValue='WindDirection'}"
-                        Style="{StaticResource Headline6TextBlock}"
                         VerticalAlignment="Center"
-                        />
+                        HorizontalAlignment="Center">
+                        <TextBlock
+                            Text="{Binding WindDirection, FallbackValue='WindDirection'}"
+                            Style="{StaticResource Headline6TextBlock}"
+                            />
+                        <TextBlock
+                            Text="Direction"
+                            Foreground="LightGray"
+                            />
+                    </StackPanel>
                 </Grid>
 
                 <TextBlock
