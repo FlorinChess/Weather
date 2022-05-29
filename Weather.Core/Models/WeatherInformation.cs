@@ -34,6 +34,9 @@ namespace Weather.Core.Models
         [JsonProperty(PropertyName = "temp_f")]
         public decimal temp_f { get; set; }
 
+        [JsonProperty(PropertyName = "is_day")]
+        public byte is_day { get; set; }
+
         [JsonProperty(PropertyName = "condition")]
         public Condition condition { get; set; }
 
@@ -54,9 +57,6 @@ namespace Weather.Core.Models
 
         [JsonProperty(PropertyName = "precip_in")]
         public decimal precip_in { get; set; }
-
-        [JsonProperty(PropertyName = "humidity")]
-        public int humidity { get; set; }
     }
 
     public class Condition
@@ -94,12 +94,6 @@ namespace Weather.Core.Models
         [JsonProperty(PropertyName = "mintemp_f")]
         public decimal mintemp_f { get; set; }
 
-        [JsonProperty(PropertyName = "avgtemp_c")]
-        public decimal avgtemp_c { get; set; }
-
-        [JsonProperty(PropertyName = "avgtemp_f")]
-        public decimal avgtemp_f { get; set; }
-
         [JsonProperty(PropertyName = "maxwind_mph")]
         public decimal maxwind_mph { get; set; }
 
@@ -111,6 +105,9 @@ namespace Weather.Core.Models
 
         [JsonProperty(PropertyName = "totalprecip_in")]
         public decimal totalprecip_in { get; set; }
+
+        [JsonProperty(PropertyName = "daily_chance_of_rain")]
+        public string daily_chance_of_rain { get; set; }
 
         [JsonProperty(PropertyName = "condition")]
         public Condition condition { get; set; }
@@ -129,20 +126,5 @@ namespace Weather.Core.Models
 
         [JsonProperty(PropertyName = "condition")]
         public Condition condition { get; set; }
-
-        [JsonProperty(PropertyName = "wind_mph")]
-        public decimal wind_mph { get; set; }
-
-        [JsonProperty(PropertyName = "wind_kph")]
-        public decimal wind_kph { get; set; }
-
-        [JsonProperty(PropertyName = "precip_mm")]
-        public decimal precip_mm { get; set; }
-
-        [JsonProperty(PropertyName = "precip_in")]
-        public decimal precip_in { get; set; }
-
-        [JsonProperty(PropertyName = "humidity")]
-        public int humidity { get; set; }
     }
 }
