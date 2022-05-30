@@ -46,12 +46,12 @@ namespace Weather.ViewModels
         /// <summary>
         /// The smallest width the window can go to
         /// </summary>
-        public double WindowMinimumWidth { get; set; } = 650;
+        public double WindowMinimumWidth { get; set; } = 700;
 
         /// <summary>
         /// The smallest height the window can go to
         /// </summary>
-        public double WindowMinimumHeight { get; set; } = 550;
+        public double WindowMinimumHeight { get; set; } = 650;
 
         /// <summary>
         /// True if the window should be borderless because it is docked or maximized
