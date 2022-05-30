@@ -43,6 +43,11 @@
     <Color x:Key="SecondaryDark">#c77c02</Color>
     <SolidColorBrush x:Key="SecondaryDarkBrush" Color="{StaticResource SecondaryDark}" />
 
+    <!-- Gray tones -->
+    <Color x:Key="ForegroundGray">LightGray</Color>
+    <SolidColorBrush x:Key="ForegroundGrayBrush" Color="{StaticResource ForegroundGray}" />
+
+    <!-- Surfaces -->
     <Color x:Key="SurfaceGray">#1f1f1f</Color>
     <SolidColorBrush x:Key="SurfaceGrayBrush" Color="{StaticResource SurfaceGray}" />
     
@@ -69,7 +74,6 @@
         <GradientStop Color="{StaticResource Primary}" Offset="0.0" />
         <GradientStop Color="{StaticResource PrimaryLight}" Offset="1.0" />
     </LinearGradientBrush>
-    
     
     <!-- Ko-fi -->
     <Color x:Key="KoFiPrimary">#29abe0</Color>

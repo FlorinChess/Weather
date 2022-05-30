@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -20,47 +17,19 @@ namespace Weather.ViewModels
 
         #region Properties
 
-        public ObservableCollection<Forecastday> WeatherDays { get; set; } = new ObservableCollection<Forecastday>();
         public ObservableCollection<WeatherHour> WeatherHours { get; set; } = new ObservableCollection<WeatherHour>();
-
-        public bool IsMetricSystemEnabled => Properties.Settings.Default.IsMetricSystemEnabled;
-
-        private string _weatherLocation = Properties.Settings.Default.WeatherLocation;
-
-        public string WeatherLocation
-        {
-            get => _weatherLocation;
-            set 
-            { 
-                _weatherLocation = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private bool _isApiCallFinished = true;
-        public bool IsApiCallFinished
-        {
-            get => _isApiCallFinished; 
-            set 
-            { 
-                _isApiCallFinished = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string FullWeatherLocation { get; set; }
+        public string ChanceOfRain { get; set; }
         public string FullDate { get; set; }
-
-        private Forecastday _selectedWeatherDay;
-        public Forecastday SelectedWeatherDay
-        {
-            get => _selectedWeatherDay;
-            set 
-            { 
-                _selectedWeatherDay = value;
-                OnPropertyChanged();
-            }
-        }
+        public string FullWeatherLocation { get; set; }
+        public bool IsMetricSystemEnabled => Properties.Settings.Default.IsMetricSystemEnabled;
+        public string MaxTemperature { get; set; }
+        public string MinTemperature { get; set; }
+        public string Precipitation { get; set; }
+        public string Temperature { get; set; }
+        public WeatherInformation Weather { get; set; }
+        public string WeatherCondition { get; set; }
+        public string Wind { get; set; }
+        public string WindDirection { get; set; }
 
         private Current _currentWeatherDay;
         public Current CurrentWeatherDay
@@ -73,15 +42,27 @@ namespace Weather.ViewModels
             }
         }
 
-        public string Temperature { get; set; }
-        public string MaxTemperature { get; set; }
-        public string MinTemperature { get; set; }
-        public string Wind { get; set; }
-        public string WindDirection { get; set; }
-        public string ChanceOfRain { get; set; }
-        public string WeatherCondition { get; set; }
-        public string LastUpdate { get; set; }
-        public WeatherInformation Weather { get; set; }
+        private bool _isApiCallFinished = true;
+        public bool IsApiCallFinished
+        {
+            get => _isApiCallFinished;
+            set
+            {
+                _isApiCallFinished = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _weatherLocation = Properties.Settings.Default.WeatherLocation;
+        public string WeatherLocation
+        {
+            get => _weatherLocation;
+            set
+            {
+                _weatherLocation = value;
+                OnPropertyChanged();
+            }
+        }
 
         #endregion
 
@@ -114,6 +95,8 @@ namespace Weather.ViewModels
 
             UpdateWeatherLocationCommand.Execute(null);
         }
+
+        #region Private Methods
 
         private async Task UpdateWeatherData()
         {
@@ -155,7 +138,7 @@ namespace Weather.ViewModels
 
                 foreach (Hour weatherHour in weatherDay.hour)
                 {
-                    DateTime.TryParse(weatherHour.time, out DateTime time);
+                    DateTime time = DateTime.Parse(weatherHour.time);
 
                     // Take into account the local time from the weather location
                     DateTime weatherLocalTime = DateTime.Parse(Weather.location.localtime);
@@ -165,21 +148,12 @@ namespace Weather.ViewModels
 
                     WeatherHours.Add(new WeatherHour()
                     {
-                        Time = time.ToShortTimeString(),
                         Temperature =
-                            (IsMetricSystemEnabled) 
+                            (IsMetricSystemEnabled)
                             ? $"{weatherHour.temp_c}°C"
                             : $"{weatherHour.temp_f}°F",
                         Text = weatherHour.condition.text,
-                        Wind =
-                            (IsMetricSystemEnabled) 
-                            ? $"{weatherHour.wind_kph}/kph" 
-                            : $"{weatherHour.wind_mph}/mph",
-                        Precipitation =
-                            (IsMetricSystemEnabled)
-                            ? $"{weatherHour.wind_kph} mm"
-                            : $"{weatherHour.wind_mph} in",
-                        Humidity = weatherHour.humidity
+                        Time = time.ToShortTimeString()
                     });
                 }
 
@@ -203,14 +177,12 @@ namespace Weather.ViewModels
         {
             FullWeatherLocation = $"{WeatherLocation}, {Weather.location.country}";
 
-            DateTime date = DateTime.Parse(CurrentWeatherDay.last_updated);            
+            DateTime date = DateTime.Parse(CurrentWeatherDay.last_updated);
 
             // Full date; e.g. Monday, 15 January
-            FullDate = $"{date.DayOfWeek}, {date.Day} {date.ToString("MMMM")}";
+            FullDate = $"{date.DayOfWeek}, {date.Day} {date:MMMM}";
 
             WeatherCondition = CurrentWeatherDay.condition.text;
-
-            LastUpdate = $"Last Update: { date.ToShortTimeString() }";
 
             MaxTemperature =
                 (IsMetricSystemEnabled)
@@ -223,23 +195,31 @@ namespace Weather.ViewModels
                 : $"{Weather.forecast.forecastday[0].day.mintemp_f}°F";
 
             // Set current temperature
-            Temperature = 
+            Temperature =
                 (IsMetricSystemEnabled)
-                ? $"{ CurrentWeatherDay.temp_c }°C" 
-                : $"{ CurrentWeatherDay.temp_f }°F";
+                ? $"{CurrentWeatherDay.temp_c}°C"
+                : $"{CurrentWeatherDay.temp_f}°F";
 
             // Set wind speed
             Wind =
                 (IsMetricSystemEnabled)
-                ? $"{ CurrentWeatherDay.wind_kph }/kph"
-                : $"{ CurrentWeatherDay.wind_mph }/mph";
+                ? $"{CurrentWeatherDay.wind_kph}/kph"
+                : $"{CurrentWeatherDay.wind_mph}/mph";
 
             // Set wind direction
             WindDirection = CurrentWeatherDay.wind_dir;
 
-            OnPropertyChanged(nameof(LastUpdate));
-            OnPropertyChanged(nameof(Temperature));
+            // Set precipitation
+            Precipitation =
+                (IsMetricSystemEnabled)
+                ? $"{CurrentWeatherDay.precip_mm}mm"
+                : $"{CurrentWeatherDay.precip_in}in";
+
+            // Set chance of rain
+            ChanceOfRain = $"{Weather.forecast.forecastday[0].day.daily_chance_of_rain}%";
         }
+
+        #endregion
 
         public override void Dispose()
         {

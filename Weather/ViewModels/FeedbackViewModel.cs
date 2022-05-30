@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Weather.Commands;
 using Weather.Stores;
 
@@ -13,37 +8,38 @@ namespace Weather.ViewModels
     {
         private NavigationStore _navigationStore;
 
+        #region Properties
+
         private string _feedbackMessage;
-        public string FeedbackMessage 
-        { 
+        public string FeedbackMessage
+        {
             get => _feedbackMessage;
-            set 
-            { 
+            set
+            {
                 _feedbackMessage = value;
                 FeedbackMessageLength = _feedbackMessage.Length.ToString();
                 OnPropertyChanged();
-            } 
+            }
         }
 
         private string _feedbackMessageLength = "0/300";
 
         public string FeedbackMessageLength
         {
-            get => _feedbackMessageLength; 
-            set 
-            { 
+            get => _feedbackMessageLength;
+            set
+            {
                 _feedbackMessageLength = $"{value}/300";
                 OnPropertyChanged();
             }
         }
 
+        #endregion
 
         #region Commands
 
         public ICommand SubmitFeedbackCommand { get; set; }
-
         public ICommand DonateCommand { get; set; }
-
         public ICommand CloseCommand { get; set; }
 
         #endregion
