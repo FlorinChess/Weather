@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Weather.Commands;
 using Weather.Stores;
 
@@ -13,7 +6,6 @@ namespace Weather.ViewModels
 {
     public class SettingsViewModel : BaseViewModel
     {
-
         private NavigationStore _navigationStore;
 
         #region Properties
@@ -21,9 +13,9 @@ namespace Weather.ViewModels
         private bool _isMetricSystemEnabled;
         public bool IsMetricSystemEnabled
         {
-            get => _isMetricSystemEnabled; 
-            set 
-            { 
+            get => _isMetricSystemEnabled;
+            set
+            {
                 _isMetricSystemEnabled = value;
 
                 // Only one can be active at the same time
@@ -90,6 +82,8 @@ namespace Weather.ViewModels
             LoadSettings();
         }
 
+        #region Private Methods
+
         private void LoadSettings()
         {
             WeatherLocation = Properties.Settings.Default.WeatherLocation;
@@ -109,22 +103,22 @@ namespace Weather.ViewModels
         /// <summary>
         /// Updates and saves all application settings
         /// </summary>
-        public void UpdateSettings()
+        private void UpdateSettings()
         {
             UpdateWeatherLocation();
             UpdateMeasurementUnit();
-            
+
             Properties.Settings.Default.Save();
         }
 
-        public void UpdateWeatherLocation()
+        private void UpdateWeatherLocation()
         {
             if (string.IsNullOrEmpty(WeatherLocation)) return;
 
             Properties.Settings.Default.WeatherLocation = WeatherLocation.Trim(); // This will be used in the URL so it's important to remove unnecessary white-space
         }
 
-        public void UpdateMeasurementUnit()
+        private void UpdateMeasurementUnit()
         {
             if (IsMetricSystemEnabled)
             {
@@ -135,6 +129,8 @@ namespace Weather.ViewModels
                 Properties.Settings.Default.IsMetricSystemEnabled = false;
             }
         }
+
+        #endregion
 
         public override void Dispose()
         {
