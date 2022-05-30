@@ -10,6 +10,7 @@
                 <ResourceDictionary Source="./Themes/Colors.xaml" />
 
                 <ResourceDictionary Source="./Themes/Buttons.xaml" />
+                <ResourceDictionary Source="./Themes/CheckBoxes.xaml" />
                 <ResourceDictionary Source="./Themes/ListViews.xaml" />
                 <ResourceDictionary Source="./Themes/Scrollbar.xaml" />
                 <ResourceDictionary Source="./Themes/TextBoxes.xaml" />

@@ -51,15 +51,20 @@
             Grid.Column="1"
             Orientation="Horizontal"
             VerticalAlignment="Center"
-            Margin="20">
-            
-            <CheckBox 
-                Content="°F, in, mph" 
-                IsChecked="{Binding IsImperialSystemEnabled}"
-                />
+            Margin="20">            
             <CheckBox  
-                Content="°C, mm, kph" Margin="30 0"
+                Content="°C, mm, kph" 
                 IsChecked="{Binding IsMetricSystemEnabled}"
+                Style="{StaticResource MaterialCheckBox}"
+                FontSize="16"
+                Foreground="White"
+                />
+            <CheckBox 
+                Content="°F, in, mph" Margin="30 0"
+                IsChecked="{Binding IsImperialSystemEnabled}"
+                Style="{StaticResource MaterialCheckBox}"
+                FontSize="16"
+                Foreground="White"
                 />
         </StackPanel>
 

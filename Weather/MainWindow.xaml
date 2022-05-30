@@ -14,7 +14,7 @@
         x:Name="AppWindow"
         MinWidth="{Binding WindowMinimumWidth}"
         MinHeight="{Binding WindowMinimumHeight}"
-        Title="Weather" Height="650" Width="900">
+        Title="Weather" Height="700" Width="940">
     <Window.Resources>
         <Style TargetType="{x:Type local:MainWindow}">
             <Setter Property="Template">
