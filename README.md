@@ -12,3 +12,7 @@
 - 🕒 Hourly weather forecast
 - 📏 Metric and Imperial system
 - 👌 Clean and responsive design
+
+## Screenshots
+
+![screenshot](https://github.com/FlorinChess/Weather/blob/master/screenshot.png)
