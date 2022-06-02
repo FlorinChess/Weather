@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Weather.Core.Exceptions;
 using Weather.Core.Models;
 
 namespace Weather.Core
@@ -18,8 +19,30 @@ namespace Weather.Core
 
             if (response.IsSuccessStatusCode!)
             {
+                // Deserialize content object 
                 string content = await response.Content.ReadAsStringAsync();
                 return JsonConvert.DeserializeObject<WeatherInformation>(content);
+            }
+            else if ((int)response.StatusCode == 400)
+            {
+                // Deserialize error object to get error code
+                string content = await response.Content.ReadAsStringAsync();
+                ApiError apiError = JsonConvert.DeserializeObject<ApiError>(content);
+
+                // Error message that gets displayed depending on the error code
+                string errorMessage = "An error occured! Please try again!";
+
+                if (apiError.error.code == 1006)
+                {
+                    // Invalid weather location
+                    errorMessage = "Invalid weather location! Please enter a different location!";
+                }
+                else if (apiError.error.code == 9999)
+                {
+                    // API internal error
+                    errorMessage = "Server-side error! Please try again later!";
+                }
+                throw new LocationNotFoundException(errorMessage);
             }
             else
             {

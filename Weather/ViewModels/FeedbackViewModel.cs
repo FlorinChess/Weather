@@ -48,19 +48,28 @@ namespace Weather.ViewModels
         {
             _navigationStore = navigationStore;
 
-
             DonateCommand = new RelayCommand(() =>
             {
                 // Registry path for Google Chrome
                 var path = Microsoft.Win32.Registry.GetValue(@"HKEY_CLASSES_ROOT\ChromeHTML\shell\open\command", null, null) as string;
 
+                string url = "https://ko-fi.com/florin_chess";
+
                 if (path != null)
                 {
                     var split = path.Split('\"');
                     path = split.Length >= 2 ? split[1] : null;
+
+                    // Starts the process from the given path in Google Chrome
+                    System.Diagnostics.Process.Start(path, url);
                 }
-                // Starts the process from the given path (Google Chrome)
-                System.Diagnostics.Process.Start(path, "https://ko-fi.com/florin_chess#paypalModal");
+                else
+                {
+                    // Start the process in Microsoft Edge
+                    // NOTE: this is a workaround; /C to terminate cmd.exe after the command runs
+                    // TODO: find a cleaner way to open a url with Edge
+                    System.Diagnostics.Process.Start("CMD.exe", $"/C start msedge {url}");
+                }
 
                 _navigationStore.CurrentViewModel = new HomeViewModel(_navigationStore);
             });
