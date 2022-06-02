@@ -127,6 +127,10 @@ namespace Weather.ViewModels
             }
         }
 
+        /// <summary>
+        /// Fetches data from the weather API and initiates UI updates
+        /// </summary>
+        /// <returns>updated data the will be diplayed on the UI</returns>
         private async Task GetWeatherInformation()
         {
             // Disable the weather location TextBox to prevent conflicting calls
