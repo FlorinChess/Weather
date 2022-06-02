@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Input;
 using Weather.Commands;
 using Weather.Core;
+using Weather.Core.Exceptions;
 using Weather.Core.Models;
 using Weather.Models;
 using Weather.Stores;
@@ -102,9 +103,28 @@ namespace Weather.ViewModels
         {
             if (string.IsNullOrEmpty(WeatherLocation)) return;
 
-            UpdateLocationSettings();
+            // Error handling
+            try
+            {
+                await GetWeatherInformation();
 
-            await GetWeatherInformation();
+                UpdateLocationSettings();
+            }
+            catch (LocationNotFoundException ex)
+            {
+                MessageBox.Show(ex.Message, "Invalid location", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                IsApiCallFinished = true;
+            }
+            catch (Exception ex)
+            {
+#if DEBUG
+                MessageBox.Show(ex.Message);
+#else
+                MessageBox.Show("An error occured! Please enter a different weather location!", "An error occured!", MessageBoxButton.OK, MessageBoxImage.Error);
+#endif
+                IsApiCallFinished = true;
+            }
         }
 
         private async Task GetWeatherInformation()
@@ -212,14 +232,14 @@ namespace Weather.ViewModels
             // Set precipitation
             Precipitation =
                 (IsMetricSystemEnabled)
-                ? $"{CurrentWeatherDay.precip_mm}mm"
-                : $"{CurrentWeatherDay.precip_in}in";
+                ? $"{CurrentWeatherDay.precip_mm} mm"
+                : $"{CurrentWeatherDay.precip_in} in";
 
             // Set chance of rain
             ChanceOfRain = $"{Weather.forecast.forecastday[0].day.daily_chance_of_rain}%";
         }
 
-        #endregion
+#endregion
 
         public override void Dispose()
         {

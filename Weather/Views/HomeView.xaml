@@ -75,7 +75,7 @@
                         />
                     <StackPanel VerticalAlignment="Center">
                         <TextBlock 
-                            Text="{Binding Temperature, FallbackValue='21°C'}"
+                            Text="{Binding Temperature, FallbackValue='N/A'}"
                             Style="{StaticResource Headline3TextBlock}"
                             />
                         <TextBlock 
@@ -120,7 +120,7 @@
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center">
                         <TextBlock
-                            Text="{Binding MaxTemperature, FallbackValue='20°C'}"
+                            Text="{Binding MaxTemperature, FallbackValue='N/A'}"
                             Style="{StaticResource Headline6TextBlock}"
                             HorizontalAlignment="Center"
                             />
@@ -137,7 +137,7 @@
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center">
                         <TextBlock
-                            Text="{Binding MinTemperature, FallbackValue='10°C'}"
+                            Text="{Binding MinTemperature, FallbackValue='N/A'}"
                             Style="{StaticResource Headline6TextBlock}"
                             HorizontalAlignment="Center"
                             />
@@ -153,7 +153,7 @@
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center">
                         <TextBlock
-                            Text="{Binding Wind, FallbackValue='Wind'}"
+                            Text="{Binding Wind, FallbackValue='N/A'}"
                             Style="{StaticResource Headline6TextBlock}"
                             HorizontalAlignment="Center"
                             />
@@ -184,7 +184,7 @@
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center">
                         <TextBlock
-                            Text="{Binding ChanceOfRain, FallbackValue='50%'}"
+                            Text="{Binding ChanceOfRain, FallbackValue='N/A'}"
                             Style="{StaticResource Headline6TextBlock}"
                             HorizontalAlignment="Center"
                             />
@@ -200,7 +200,7 @@
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center">
                         <TextBlock
-                            Text="{Binding Precipitation, FallbackValue='100mm'}"
+                            Text="{Binding Precipitation, FallbackValue='N/A'}"
                             Style="{StaticResource Headline6TextBlock}"
                             />
                         <TextBlock
