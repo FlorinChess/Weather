@@ -4,7 +4,7 @@
 </div>
 
 <div align="center">
-  <p align="center">Simple weather app developed with WPF .NET Core for Windows and Xamarin.Forms for Android. Both applications share the same business logic and implement the MVVM design pattern. <b>Weather</b> provides information on current weather with hourly forecasts. The application has a light-weight and intuitive UI inspired by Google's Material Design guide.</p>
+  <p align="center">Simple weather app developed with WPF .NET Core for Windows and Xamarin.Forms for Android. Both applications share the same business logic and implement the MVVM design pattern. <b>Weather</b> provides information on current weather with hourly forecasts. The application has a lightweight and intuitive UI inspired by Google's Material Design guide.</p>
 </div>
 
 ## Features
