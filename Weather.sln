@@ -5,7 +5,11 @@ VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Weather", "Weather\Weather.csproj", "{8A79478D-3BE9-4FC7-8B80-48C54E501B2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weather.Core", "Weather.Core\Weather.Core.csproj", "{A76753DB-55F5-488B-B119-ED03217461D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Weather.Core", "Weather.Core\Weather.Core.csproj", "{A76753DB-55F5-488B-B119-ED03217461D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weather.App.Android", "Weather.App\Weather.App.Android\Weather.App.Android.csproj", "{AC51291E-B3C4-490F-AB07-7799BEB37A5D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weather.App", "Weather.App\Weather.App\Weather.App.csproj", "{AAB47E30-74A9-4AFD-A5CA-A04E0C8267F8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,16 @@ Global
 		{A76753DB-55F5-488B-B119-ED03217461D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A76753DB-55F5-488B-B119-ED03217461D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A76753DB-55F5-488B-B119-ED03217461D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC51291E-B3C4-490F-AB07-7799BEB37A5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC51291E-B3C4-490F-AB07-7799BEB37A5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC51291E-B3C4-490F-AB07-7799BEB37A5D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{AC51291E-B3C4-490F-AB07-7799BEB37A5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC51291E-B3C4-490F-AB07-7799BEB37A5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC51291E-B3C4-490F-AB07-7799BEB37A5D}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{AAB47E30-74A9-4AFD-A5CA-A04E0C8267F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAB47E30-74A9-4AFD-A5CA-A04E0C8267F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAB47E30-74A9-4AFD-A5CA-A04E0C8267F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAB47E30-74A9-4AFD-A5CA-A04E0C8267F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

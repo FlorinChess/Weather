@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Weather.App.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <!-- Primary-->
+            <Color x:Key="Primary">#2962ff</Color>
+            <Color x:Key="PrimaryLight">#768fff</Color>
+
+            <!-- Secondary -->
+            <Color x:Key="Secondary">#ffab40</Color>
+
+            <!-- Background colors-->
+            <Color x:Key="BackgroundDark">#121212</Color>
+            
+            <!-- Foreground color main-->
+            <Color x:Key="ForegroundLight">#ffffff</Color>
+
+            <!-- Gray tones -->
+            <Color x:Key="ForegroundGray">LightGray</Color>
+
+            <!-- Surfaces -->
+            <Color x:Key="SurfaceGray">#1f1f1f</Color>
+            <Color x:Key="SurfaceElevation1">#1d1d1d</Color>
+            <Color x:Key="SurfaceElevation2">#222222</Color>
+            <Color x:Key="SurfaceElevation3">#242424</Color>
+            <Color x:Key="SurfaceElevation4">#272727</Color>
+            <Color x:Key="SurfaceElevation5">#2c2c2c</Color>
+            
+            <!-- Gradients -->
+            <LinearGradientBrush x:Key="PrimaryToPrimaryLightGradientBrush" StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Color="{StaticResource Primary}" Offset="0.0" />
+                <GradientStop Color="{StaticResource PrimaryLight}" Offset="1.0" />
+            </LinearGradientBrush>
+
+            <!-- Ko-fi -->
+            <Color x:Key="KoFiPrimary">#29abe0</Color>
+
+            <Style TargetType="Label" x:Key="Headline3Label">
+                <Setter Property="TextColor" Value="{StaticResource ForegroundLight}" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                <Setter Property="FontSize" Value="Title" />
+            </Style>
+
+            <!-- HomePage styles-->
+            <Style TargetType="Label" x:Key="DashboardDataText">
+                <Setter Property="TextColor" Value="{StaticResource ForegroundLight}" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="FontSize" Value="Medium" />
+            </Style>
+
+            <Style TargetType="Label" x:Key="DashboardDescriptionText">
+                <Setter Property="TextColor" Value="{StaticResource ForegroundGray}" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="FontSize" Value="Small" />
+            </Style>
+
+            <Style TargetType="Label" x:Key="WeatherHourLabel">
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="TextColor" Value="{StaticResource ForegroundLight}" />
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+
+            <Style TargetType="Rectangle">
+                <Setter Property="BackgroundColor" Value="{StaticResource ForegroundLight}" />
+                <Setter Property="HeightRequest" Value="1" />
+                <Setter Property="Margin" Value="10" />
+            </Style>
+            
+            <!-- FeedbackPage styles-->
+            <Style TargetType="Button" x:Key="FeedbackPageButton">
+                <Setter Property="BackgroundColor" Value="{StaticResource KoFiPrimary}" />
+                <Setter Property="CornerRadius" Value="5" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="FontSize" Value="17" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="{StaticResource ForegroundLight}" />
+                <Setter Property="WidthRequest" Value="200" />
+            </Style>
+
+            <Style TargetType="Label" x:Key="FeedbackPageLabel" >
+                <Setter Property="TextColor" Value="{StaticResource ForegroundLight}" />
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="Margin" Value="10" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+            </Style>
+            
+            <!-- SettingsPage styles -->
+            <Style TargetType="Label" x:Key="SettingsPageLabel">
+                <Setter Property="TextColor" Value="{StaticResource ForegroundLight}" />
+                <Setter Property="FontSize" Value="Medium" />
+            </Style>
+            
+            <!-- Button base style -->
+            <Style TargetType="Button">
+                <Setter Property="TextColor" Value="{StaticResource ForegroundLight}" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#332196F3" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+        </ResourceDictionary>        
+    </Application.Resources>
+</Application>

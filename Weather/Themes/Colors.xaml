@@ -1,24 +1,13 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Color x:Key="BackgroundLight">#efefef</Color>
-    <SolidColorBrush x:Key="BackgroundLightBrush" Color="{StaticResource BackgroundLight}" />
-
-    <Color x:Key="BackgroundVeryLight">#fafafa</Color>
-    <SolidColorBrush x:Key="BackgroundVeryLightBrush" Color="{StaticResource BackgroundVeryLight}" />
 
     <Color x:Key="ForegroundMain">#686868</Color>
     <SolidColorBrush x:Key="ForegroundMainBrush" Color="{StaticResource ForegroundMain}" />
-
-    <Color x:Key="ForegroundVeryDark">#000000</Color>
-    <SolidColorBrush x:Key="ForegroundVeryDarkBrush" Color="{StaticResource ForegroundVeryDark}" />
 
     <Color x:Key="ForegroundLight">#ffffff</Color>
     <SolidColorBrush x:Key="ForegroundLightBrush" Color="{StaticResource ForegroundLight}" />
     
     <!-- Material Design Color Palette -->
-    <Color x:Key="BackgroundBlack">#000000</Color>
-    <SolidColorBrush x:Key="BackgroundBlackBrush" Color="{StaticResource BackgroundBlack}" />
-
     <Color x:Key="BackgroundDark">#121212</Color>
     <SolidColorBrush x:Key="BackgroundDarkBrush" Color="{StaticResource BackgroundDark}" />
 
@@ -40,9 +29,6 @@
     <Color x:Key="SecondaryLight">#ffdd71</Color>
     <SolidColorBrush x:Key="SecondaryLightBrush" Color="{StaticResource SecondaryLight}" />
 
-    <Color x:Key="SecondaryDark">#c77c02</Color>
-    <SolidColorBrush x:Key="SecondaryDarkBrush" Color="{StaticResource SecondaryDark}" />
-
     <!-- Gray tones -->
     <Color x:Key="ForegroundGray">LightGray</Color>
     <SolidColorBrush x:Key="ForegroundGrayBrush" Color="{StaticResource ForegroundGray}" />
@@ -51,17 +37,8 @@
     <Color x:Key="SurfaceGray">#1f1f1f</Color>
     <SolidColorBrush x:Key="SurfaceGrayBrush" Color="{StaticResource SurfaceGray}" />
     
-    <Color x:Key="SurfaceElevation1">#1d1d1d</Color>
-    <SolidColorBrush x:Key="SurfaceElevation1Brush" Color="{StaticResource SurfaceElevation1}" />
-
     <Color x:Key="SurfaceElevation2">#222222</Color>
     <SolidColorBrush x:Key="SurfaceElevation2Brush" Color="{StaticResource SurfaceElevation2}" />
-
-    <Color x:Key="SurfaceElevation3">#242424</Color>
-    <SolidColorBrush x:Key="SurfaceElevation3Brush" Color="{StaticResource SurfaceElevation3}" />
-
-    <Color x:Key="SurfaceElevation4">#272727</Color>
-    <SolidColorBrush x:Key="SurfaceElevation4Brush" Color="{StaticResource SurfaceElevation4}" />
 
     <Color x:Key="SurfaceElevation5">#2c2c2c</Color>
     <SolidColorBrush x:Key="SurfaceElevation5Brush" Color="{StaticResource SurfaceElevation5}" />

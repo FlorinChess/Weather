@@ -10,7 +10,7 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" x:Name="gridBody"/>    
+            <ColumnDefinition Width="*"/>    
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -26,11 +26,6 @@
             Padding="20 10" 
             Style="{StaticResource TitleTextBlock}"          
             />
-
-        <!--<TextBlock 
-            Grid.Row="1"
-            Text="Make a suggestion"
-            Style="{StaticResource Heading5TextBlock}"/>-->
 
         <StackPanel
             Grid.Column="0"
@@ -66,9 +61,8 @@
             
             <Button
                 Command="{Binding DonateCommand}"
-                Style="{StaticResource KoFiButton}"/>
-
-
+                Style="{StaticResource KoFiButton}"
+                />
         </StackPanel>
         <Button 
             Grid.Column="1"
@@ -80,19 +74,15 @@
             Margin="10"
             UseLayoutRounding="True"
             />
-        
-        <StackPanel
+
+        <Button 
             Grid.Row="2"
             Grid.Column="1"
-            Orientation="Horizontal"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Bottom">
-            <Button 
-                Style="{StaticResource MaterialTextButton}"
-                Command="{Binding CloseCommand}"
-                Content="CLOSE"
-                Margin="10"
-                />
-        </StackPanel>
+            Style="{StaticResource MaterialTextButton}"
+            Command="{Binding CloseCommand}"
+            Content="CLOSE"
+            Margin="10"
+            VerticalAlignment="Bottom"
+            />
     </Grid>
 </UserControl>

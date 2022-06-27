@@ -7,10 +7,10 @@ namespace Weather.Core.Models
         [JsonProperty(PropertyName = "location")]
         public Location location { get; set; }
 
-        [JsonProperty(PropertyName ="current")]
+        [JsonProperty(PropertyName = "current")]
         public Current current { get; set; }
 
-        [JsonProperty(PropertyName ="forecast")]
+        [JsonProperty(PropertyName = "forecast")]
         public Forecast forecast { get; set; }
     }
 
@@ -67,7 +67,7 @@ namespace Weather.Core.Models
 
     public class Forecast
     {
-        [JsonProperty(PropertyName ="forecastday")]
+        [JsonProperty(PropertyName = "forecastday")]
         public Forecastday[] forecastday { get; set; }
     }
 

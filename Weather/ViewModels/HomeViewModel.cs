@@ -243,7 +243,7 @@ namespace Weather.ViewModels
             ChanceOfRain = $"{Weather.forecast.forecastday[0].day.daily_chance_of_rain}%";
         }
 
-#endregion
+        #endregion
 
         public override void Dispose()
         {
