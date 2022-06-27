@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Weather.App.ViewModels"
+             xmlns:models="clr-namespace:Weather.App.Models" 
+             xmlns:converters="clr-namespace:Weather.App.Converters"
+             x:Class="Weather.App.Views.HomePage"
+             BackgroundColor="{StaticResource BackgroundDark}"
+             Title="Weather"
+             x:DataType="vm:HomeViewModel">
+    <ContentPage.BindingContext>
+        <vm:HomeViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:StringToSourceConverter x:Key="StringToSourceConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <Frame 
+        CornerRadius="8" 
+        Margin="6,8" 
+        Background="{StaticResource PrimaryToPrimaryLightGradientBrush}"
+        HasShadow="True"
+        IsClippedToBounds="True">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Label 
+                Grid.ColumnSpan="2" 
+                Text="{Binding FullWeatherLocation, FallbackValue='City, Country'}"
+                Style="{StaticResource Headline3Label}"
+                />
+
+            <Label 
+                Grid.Row="1" 
+                Grid.ColumnSpan="2"
+                TextColor="{StaticResource ForegroundLight}"
+                Text="{Binding FullDate, FallbackValue='Day of the week, Date'}"
+                HorizontalOptions="StartAndExpand"
+                FontSize="Subtitle"
+                />
+
+            <Image 
+                Grid.Row="2"
+                Margin="0,20,0,0"
+                HeightRequest="120"
+                WidthRequest="120"
+                HorizontalOptions="Center"
+                Source="{Binding WeatherCondition, Converter={StaticResource StringToSourceConverter}}" />
+
+            <StackLayout Grid.Row="2" Grid.Column="1" VerticalOptions="Center">
+                <Label 
+                    TextColor="{StaticResource ForegroundLight}"
+                    Text="{Binding Temperature, FallbackValue='20°C'}" 
+                    FontSize="40"
+                    HorizontalOptions="Center"
+                    />
+                <Label 
+                    TextColor="{StaticResource ForegroundLight}"
+                    Text="{Binding WeatherCondition, FallbackValue='Mostly sunny'}"
+                    FontSize="Subtitle"
+                    HorizontalOptions="CenterAndExpand"
+                    />
+            </StackLayout>
+
+            <!-- Separator -->
+            <Rectangle Grid.Row="3" Grid.ColumnSpan="2" />
+
+            <Grid Grid.Row="4" Grid.ColumnSpan="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Text="{Binding MaxTemperature, FallbackValue='N/A'}" Style="{StaticResource DashboardDataText}" />
+                <Label Grid.Row="1" Grid.Column="0" Text="Max" Style="{StaticResource DashboardDescriptionText}" />
+
+                <Label Grid.Row="2" Grid.Column="0" Text="{Binding MinTemperature, FallbackValue='N/A'}" Style="{StaticResource DashboardDataText}" />
+                <Label Grid.Row="3" Grid.Column="0" Text="Min" Style="{StaticResource DashboardDescriptionText}" />
+
+                <Label Grid.Row="0" Grid.Column="1" Text="{Binding Wind, FallbackValue='N/A'}" Style="{StaticResource DashboardDataText}" />
+                <Label Grid.Row="1" Grid.Column="1" Text="Wind" Style="{StaticResource DashboardDescriptionText}" />
+
+                <Label Grid.Row="2" Grid.Column="1" Text="{Binding WindDirection, FallbackValue='N/A'}" Style="{StaticResource DashboardDataText}" />
+                <Label Grid.Row="3" Grid.Column="1" Text="Direction" Style="{StaticResource DashboardDescriptionText}" />
+
+                <Label Grid.Row="0" Grid.Column="2" Text="{Binding ChanceOfRain, FallbackValue='N/A'}" Style="{StaticResource DashboardDataText}" />
+                <Label Grid.Row="1" Grid.Column="2" Text="Rain" Style="{StaticResource DashboardDescriptionText}" />
+
+                <Label Grid.Row="2" Grid.Column="2" Text="{Binding Precipitation, FallbackValue='N/A'}" Style="{StaticResource DashboardDataText}" />
+                <Label Grid.Row="3" Grid.Column="2" Text="Rainfall" Style="{StaticResource DashboardDescriptionText}" />
+            </Grid>
+
+            <!-- Separator -->
+            <Rectangle Grid.Row="5" Grid.ColumnSpan="2" />
+
+            <Label 
+                Grid.Row="6"
+                Grid.ColumnSpan="2"
+                Text="Today's weather:"
+                Style="{StaticResource Headline3Label}"
+                />
+
+            <StackLayout Grid.Row="7" Grid.ColumnSpan="2">
+                <ListView 
+                    ItemsSource="{Binding WeatherHours}"
+                    SelectionMode="None" 
+                    SeparatorVisibility="None"
+                    HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="models:WeatherHour">
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <Grid Padding="10">
+                                        <Frame CornerRadius="5" BackgroundColor="{StaticResource Primary}">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="0.2*"/>
+                                                    <ColumnDefinition Width="0.4*"/>
+                                                    <ColumnDefinition Width="0.4*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <Label Text="{Binding Time}" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                                <Image Grid.Column="1" HeightRequest="50" WidthRequest="50" Source="{Binding Text, Converter={StaticResource StringToSourceConverter}}" />
+                                                <Label Grid.Column="2" Text="{Binding Temperature}" VerticalOptions="Center" HorizontalOptions="Center" />
+                                            </Grid>
+                                        </Frame>
+                                    </Grid>
+                                </ViewCell.View>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </Grid>
+    </Frame>
+</ContentPage>

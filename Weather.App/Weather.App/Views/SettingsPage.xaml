@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:vm="clr-namespace:Weather.App.ViewModels"
+             x:Class="Weather.App.Views.SettingsPage"
+             BackgroundColor="{StaticResource BackgroundDark}"
+             Title="Settings"
+             x:DataType="vm:SettingsViewModel">
+    <ContentPage.BindingContext>
+        <vm:SettingsViewModel />
+    </ContentPage.BindingContext>
+    
+    <Grid Margin="6">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Label 
+            Grid.Column="0" Grid.Row="0"
+            Text="Weather Location:" 
+            Style="{DynamicResource SettingsPageLabel}"/>
+        
+        <Entry 
+            Grid.Column="1" Grid.Row="0"
+            Placeholder="Enter a city..."
+            PlaceholderColor="{StaticResource ForegroundGray}"
+            Text="{Binding WeatherLocation, Mode=TwoWay}"
+            TextColor="{StaticResource ForegroundLight}"/>
+        
+        <Label 
+            Grid.Column="0" Grid.Row="1"
+            Text="Measurement units:" 
+            Style="{DynamicResource SettingsPageLabel}"/>
+
+        <StackLayout Grid.Column="1" Grid.Row="1">
+            <RadioButton Content="°C, mm, kph" />
+            <RadioButton Content="°F, in, mph" IsChecked="{Binding IsMetricSystemEnabled}"/>
+        </StackLayout>
+    </Grid>
+</ContentPage>

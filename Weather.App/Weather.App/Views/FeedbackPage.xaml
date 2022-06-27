@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:vm="clr-namespace:Weather.App.ViewModels"
+             x:Class="Weather.App.Views.FeedbackPage"
+             BackgroundColor="{StaticResource BackgroundDark}"
+             Title="Feedback">
+    <ContentPage.BindingContext>
+        <vm:FeedbackViewModel />
+    </ContentPage.BindingContext>
+    
+    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Margin="6" x:DataType="vm:FeedbackViewModel">
+        <Label 
+            Text="Suggest a new feature or report a bug. Any feedback helps me make the app better."
+            Style="{DynamicResource FeedbackPageLabel}"
+            />
+        <Button 
+            Text="Submit feedback" 
+            Command="{Binding SubmitFeedbackCommand}"
+            Style="{DynamicResource FeedbackPageButton}"
+            />
+        <Label 
+            Text="Weather is an open-source project created and maintained by one person. If you like app and you would like to support me than check out the link below."
+            Style="{DynamicResource FeedbackPageLabel}"
+           />
+        <Button 
+            Text="Buy me a coffee ♥" 
+            Command="{Binding DonateCommand}"
+            Style="{DynamicResource FeedbackPageButton}"
+            />
+    </StackLayout>
+</ContentPage>
