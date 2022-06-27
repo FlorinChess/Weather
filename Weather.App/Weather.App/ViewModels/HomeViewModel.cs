@@ -3,6 +3,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Weather.App.Helpers;
 using Weather.App.Models;
 using Weather.Core;
 using Weather.Core.Exceptions;
@@ -20,7 +21,7 @@ namespace Weather.App.ViewModels
         public string ChanceOfRain { get; set; }
         public string FullDate { get; set; }
         public string FullWeatherLocation { get; set; }
-        public bool IsMetricSystemEnabled { get; set; }
+        public bool IsMetricSystemEnabled { get; set; } = Settings.IsMetricSystemEnabled;
         public string MaxTemperature { get; set; }
         public string MinTemperature { get; set; }
         public string Precipitation { get; set; }
@@ -42,13 +43,12 @@ namespace Weather.App.ViewModels
             }
         }
 
-        private string _weatherLocation = Preferences.Get(nameof(_weatherLocation), "New York");
+        private string _weatherLocation = Settings.WeatherLocation;
         public string WeatherLocation
         {
             get => _weatherLocation;
             set
             {
-                Preferences.Set(nameof(_weatherLocation), value);
                 OnPropertyChanged();
             }
         }

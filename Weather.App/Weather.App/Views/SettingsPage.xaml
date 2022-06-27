@@ -38,8 +38,8 @@
             Style="{DynamicResource SettingsPageLabel}"/>
 
         <StackLayout Grid.Column="1" Grid.Row="1">
-            <RadioButton Content="°C, mm, kph" />
-            <RadioButton Content="°F, in, mph" IsChecked="{Binding IsMetricSystemEnabled}"/>
+            <RadioButton Content="°C, mm, kph" IsChecked="{Binding IsMetricSystemEnabled}"/>
+            <RadioButton Content="°F, in, mph"/>
         </StackLayout>
     </Grid>
 </ContentPage>
