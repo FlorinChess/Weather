@@ -10,11 +10,8 @@
 
             <!-- Secondary -->
             <Color x:Key="Secondary">#ffab40</Color>
-            <Color x:Key="SecondaryLight">#ffdd71</Color>
-            <Color x:Key="SecondaryDark">#c77c02</Color>
 
             <!-- Background colors-->
-            <Color x:Key="BackgroundLight">#efefef</Color>
             <Color x:Key="BackgroundDark">#121212</Color>
             
             <!-- Foreground color main-->
@@ -30,15 +27,9 @@
             <Color x:Key="SurfaceElevation3">#242424</Color>
             <Color x:Key="SurfaceElevation4">#272727</Color>
             <Color x:Key="SurfaceElevation5">#2c2c2c</Color>
-            <Color x:Key="SurfaceElevation6">#2d2d2d</Color>
             
             <!-- Gradients -->
             <LinearGradientBrush x:Key="PrimaryToPrimaryLightGradientBrush" StartPoint="0,0" EndPoint="0,1">
-                <GradientStop Color="{StaticResource Primary}" Offset="0.0" />
-                <GradientStop Color="{StaticResource PrimaryLight}" Offset="1.0" />
-            </LinearGradientBrush>
-
-            <LinearGradientBrush x:Key="PrimaryToPrimaryLightGradientBrushHorizontal" StartPoint="0,0" EndPoint="1,0">
                 <GradientStop Color="{StaticResource Primary}" Offset="0.0" />
                 <GradientStop Color="{StaticResource PrimaryLight}" Offset="1.0" />
             </LinearGradientBrush>
@@ -63,6 +54,14 @@
                 <Setter Property="TextColor" Value="{StaticResource ForegroundGray}" />
                 <Setter Property="HorizontalOptions" Value="Center" />
                 <Setter Property="FontSize" Value="Small" />
+            </Style>
+
+            <Style TargetType="Label" x:Key="WeatherHourLabel">
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="TextColor" Value="{StaticResource ForegroundLight}" />
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="FontAttributes" Value="Bold" />
             </Style>
 
             <Style TargetType="Rectangle">
