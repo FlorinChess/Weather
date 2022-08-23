@@ -30,13 +30,13 @@ namespace Weather.Core.Tests
         public void GetWeather_IncorrectWeatherLocation_ThrowsLocationNotFoundException()
         {
             // Arrange
-            string testLocation = "aleiraufheilafg";
+            string testLocation = "Not A Real Location";
+            string expectedErrorMessage = "Invalid weather location! Please enter a different location!";
 
             // Act
             var apiRespone = Assert.ThrowsAsync<LocationNotFoundException>(async () => await ApiCaller.GetWeather(testLocation));
 
             // Assert
-            string expectedErrorMessage = "Invalid weather location! Please enter a different location!";
             Assert.That(apiRespone.Message, Is.EqualTo(expectedErrorMessage));
         }
     }
