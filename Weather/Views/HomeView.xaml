@@ -248,6 +248,7 @@
                 <StackPanel 
                     Grid.Row="5"
                     Grid.ColumnSpan="2"
+                    VirtualizingPanel.VirtualizationMode="Recycling"
                     VerticalAlignment="Bottom"
                     HorizontalAlignment="Right"
                     Orientation="Horizontal"
