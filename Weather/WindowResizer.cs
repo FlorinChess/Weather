@@ -35,7 +35,7 @@ namespace Weather
         /// <summary>
         /// The window to handle the resizing for
         /// </summary>
-        private Window mWindow;
+        private readonly Window mWindow;
 
         /// <summary>
         /// The last calculated available screen size
@@ -45,7 +45,7 @@ namespace Weather
         /// <summary>
         /// How close to the edge the window has to be to be detected as at the edge of the screen
         /// </summary>
-        private int mEdgeTolerance = 2;
+        private readonly int mEdgeTolerance = 2;
 
         /// <summary>
         /// The transform matrix used to convert WPF sizes to screen pixels
@@ -224,7 +224,7 @@ namespace Weather
             {
                 // Handle the GetMinMaxInfo of the Window
                 case 0x0024:/* WM_GETMINMAXINFO */
-                    WmGetMinMaxInfo(hwnd, lParam);
+                    WmGetMinMaxInfo(lParam);
                     handled = true;
                     break;
             }
@@ -240,11 +240,10 @@ namespace Weather
         /// </summary>
         /// <param name="hwnd"></param>
         /// <param name="lParam"></param>
-        private void WmGetMinMaxInfo(System.IntPtr hwnd, System.IntPtr lParam)
+        private void WmGetMinMaxInfo(IntPtr lParam)
         {
             // Get the point position to determine what screen we are on
-            POINT lMousePosition;
-            GetCursorPos(out lMousePosition);
+            GetCursorPos(out POINT lMousePosition);
 
             // Get the primary monitor at cursor position 0,0
             var lPrimaryScreen = MonitorFromPoint(new POINT(0, 0), MonitorOptions.MONITOR_DEFAULTTOPRIMARY);
@@ -307,7 +306,6 @@ namespace Weather
         MONITOR_DEFAULTTONEAREST = 0x00000002
     }
 
-
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
     public class MONITORINFO
     {
@@ -316,7 +314,6 @@ namespace Weather
         public Rectangle rcWork = new Rectangle();
         public int dwFlags = 0;
     }
-
 
     [StructLayout(LayoutKind.Sequential)]
     public struct Rectangle

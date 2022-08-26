@@ -35,7 +35,7 @@
                                 <Border CornerRadius="{Binding WindowCornerRadius, FallbackValue=25}"
                                     Background="{StaticResource BackgroundDarkBrush}">
                                     <Border.Effect>
-                                        <DropShadowEffect ShadowDepth="0" Opacity="0.2" />
+                                        <DropShadowEffect ShadowDepth="0" Color="{StaticResource SurfaceElevation2}" />
                                     </Border.Effect>
                                 </Border>
 
