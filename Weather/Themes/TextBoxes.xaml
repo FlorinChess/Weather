@@ -153,7 +153,7 @@
                                     </Viewbox>
                                 </StackPanel>
                                 <Border.Effect>
-                                    <DropShadowEffect ShadowDepth="4"/>
+                                    <DropShadowEffect ShadowDepth="4" />
                                 </Border.Effect>
                             </Border>
                         </Grid>

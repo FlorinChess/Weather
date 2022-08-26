@@ -48,7 +48,7 @@
                                 />
                         </StackPanel>
                         <Border.Effect>
-                            <DropShadowEffect BlurRadius="10" Opacity="0.45"/>
+                            <DropShadowEffect BlurRadius="5" Color="{StaticResource PrimaryLight}"/>
                         </Border.Effect>
                     </Border>
                 </ControlTemplate>
