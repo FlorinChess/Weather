@@ -6,7 +6,7 @@ namespace Weather.ViewModels
 {
     public class FeedbackViewModel : BaseViewModel
     {
-        private NavigationStore _navigationStore;
+        private readonly NavigationStore _navigationStore;
 
         #region Properties
 
@@ -38,9 +38,9 @@ namespace Weather.ViewModels
 
         #region Commands
 
-        public ICommand SubmitFeedbackCommand { get; set; }
-        public ICommand DonateCommand { get; set; }
-        public ICommand CloseCommand { get; set; }
+        public ICommand SubmitFeedbackCommand { get; }
+        public ICommand DonateCommand { get; }
+        public ICommand CloseCommand { get; }
 
         #endregion
 
@@ -55,7 +55,7 @@ namespace Weather.ViewModels
 
                 string url = "https://ko-fi.com/florin_chess";
 
-                if (path != null)
+                if (!string.IsNullOrEmpty(path))
                 {
                     var split = path.Split('\"');
                     path = split.Length >= 2 ? split[1] : null;

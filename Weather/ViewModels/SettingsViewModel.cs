@@ -6,7 +6,7 @@ namespace Weather.ViewModels
 {
     public class SettingsViewModel : BaseViewModel
     {
-        private NavigationStore _navigationStore;
+        private readonly NavigationStore _navigationStore;
 
         #region Properties
 
@@ -62,8 +62,8 @@ namespace Weather.ViewModels
 
         #region Commands
 
-        public ICommand SaveSettingsCommand { get; set; }
-        public ICommand CancelCommand { get; set; }
+        public ICommand SaveSettingsCommand { get; }
+        public ICommand CancelCommand { get; }
 
         #endregion
 

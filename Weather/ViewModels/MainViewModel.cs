@@ -10,14 +10,14 @@ namespace Weather.ViewModels
         #region Private Members
 
         /// <summary>
-        /// Store for the current view model
+        /// Store the current view model
         /// </summary>
         private readonly NavigationStore _navigationStore;
 
         /// <summary>
         /// The window this view model controls
         /// </summary>
-        private Window _window;
+        private readonly Window _window;
 
         /// <summary>
         /// The margin around the window to allow for a drop shadow
@@ -131,17 +131,17 @@ namespace Weather.ViewModels
         /// <summary>
         /// The command to minimize the window
         /// </summary>
-        public ICommand MinimizeCommand { get; set; }
+        public ICommand MinimizeCommand { get; }
 
         /// <summary>
         /// The command to maximize the window
         /// </summary>
-        public ICommand MaximizeCommand { get; set; }
+        public ICommand MaximizeCommand { get; }
 
         /// <summary>
         /// The command to close the window
         /// </summary>
-        public ICommand CloseCommand { get; set; }
+        public ICommand CloseCommand { get; }
 
         #endregion
 

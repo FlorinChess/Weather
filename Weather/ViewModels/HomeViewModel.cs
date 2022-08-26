@@ -22,7 +22,7 @@ namespace Weather.ViewModels
         public string ChanceOfRain { get; set; }
         public string FullDate { get; set; }
         public string FullWeatherLocation { get; set; }
-        public bool IsMetricSystemEnabled => Properties.Settings.Default.IsMetricSystemEnabled;
+        public static bool IsMetricSystemEnabled => Properties.Settings.Default.IsMetricSystemEnabled;
         public string MaxTemperature { get; set; }
         public string MinTemperature { get; set; }
         public string Precipitation { get; set; }
@@ -44,7 +44,7 @@ namespace Weather.ViewModels
         }
 
         private bool _isApiCallFinished = true;
-        public bool IsApiCallFinished
+        public bool IsApiCallFinished 
         {
             get => _isApiCallFinished;
             set
@@ -69,9 +69,9 @@ namespace Weather.ViewModels
 
         #region Commands
 
-        public ICommand OpenSettingsCommand { get; set; }
-        public ICommand OpenFeedbackCommand { get; set; }
-        public ICommand UpdateWeatherLocationCommand { get; set; }
+        public ICommand OpenSettingsCommand { get; }
+        public ICommand OpenFeedbackCommand { get; }
+        public ICommand UpdateWeatherLocationCommand { get; }
 
         #endregion
 
@@ -127,10 +127,6 @@ namespace Weather.ViewModels
             }
         }
 
-        /// <summary>
-        /// Fetches data from the weather API and initiates UI updates
-        /// </summary>
-        /// <returns>updated data the will be diplayed on the UI</returns>
         private async Task GetWeatherInformation()
         {
             // Disable the weather location TextBox to prevent conflicting calls
@@ -185,9 +181,6 @@ namespace Weather.ViewModels
             });
         }
 
-        /// <summary>
-        /// Updates the weather location setting
-        /// </summary>
         private void UpdateLocationSettings()
         {
             Properties.Settings.Default.WeatherLocation = WeatherLocation.Trim(); // This will be used in the URL so it's important to remove unnecessary white-space
