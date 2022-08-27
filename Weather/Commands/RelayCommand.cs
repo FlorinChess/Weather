@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Weather.Commands
@@ -10,7 +11,9 @@ namespace Weather.Commands
         /// <summary>
         /// The action to run
         /// </summary>
-        private Action mAction;
+        private readonly Action _action;
+
+        private readonly Func<Task> _func;
 
         #endregion
 
@@ -19,7 +22,7 @@ namespace Weather.Commands
         /// <summary>
         /// The event thats fired when the <see cref="CanExecute(object)"/> value has changed
         /// </summary>
-        public event EventHandler CanExecuteChanged = (sender, e) => { };
+        public event EventHandler? CanExecuteChanged = (sender, e) => { };
 
         #endregion
 
@@ -30,7 +33,12 @@ namespace Weather.Commands
         /// </summary>
         public RelayCommand(Action action)
         {
-            mAction = action;
+            _action = action;
+        }
+
+        public RelayCommand(Func<Task> func)
+        {
+            _func = func;
         }
 
         #endregion
@@ -42,19 +50,20 @@ namespace Weather.Commands
         /// </summary>
         /// <param name="parameter"></param>
         /// <returns></returns>
-        public bool CanExecute(object parameter)
-        {
-            return true;
-        }
+        public bool CanExecute(object? parameter) => true;
 
         /// <summary>
         /// Executes the commands Action
         /// </summary>
         /// <param name="parameter"></param>
-        public void Execute(object parameter)
+        public async void Execute(object? parameter)
         {
-            mAction();
-        }
+            _action?.Invoke();
+
+            if (_func == null) return;
+
+            await _func?.Invoke();
+        } 
 
         #endregion
     }
