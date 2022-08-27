@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -9,7 +9,7 @@ namespace Weather.Core
 {
     public static class ApiCaller
     {
-        public static async Task<WeatherInformation> GetWeather(string location, string? lang = "en")
+        public static async Task<WeatherInformation> GetWeather(string location, string lang = "en")
         {
             using HttpClient httpClient = new HttpClient();
             var response = await httpClient.GetAsync($"https://api.weatherapi.com/v1/forecast.json?key=592925aed75849868d1112324222302&q={location}&days=3&aqi=no&alerts=no&lang={lang}");
@@ -18,13 +18,13 @@ namespace Weather.Core
             {
                 // Deserialize content object 
                 string content = await response.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<WeatherInformation>(content);
+                return JsonSerializer.Deserialize<WeatherInformation>(content);
             }
             else if ((int)response.StatusCode == 400)
             {
                 // Deserialize error object to get error code
                 string content = await response.Content.ReadAsStringAsync();
-                ApiError apiError = JsonConvert.DeserializeObject<ApiError>(content);
+                ApiError apiError = JsonSerializer.Deserialize<ApiError>(content);
 
                 // Error message that gets displayed depending on the error code
                 string errorMessage = "An error occured! Please try again!";
