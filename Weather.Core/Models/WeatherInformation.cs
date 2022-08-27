@@ -54,7 +54,7 @@
         public decimal maxwind_kph { get; set; }
         public decimal totalprecip_mm { get; set; }
         public decimal totalprecip_in { get; set; }
-        public int daily_chance_of_rain { get; set; }
+        public ushort daily_chance_of_rain { get; set; }
         public Condition condition { get; set; }
     }
 
