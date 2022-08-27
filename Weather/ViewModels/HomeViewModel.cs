@@ -183,7 +183,7 @@ namespace Weather.ViewModels
 
         private void UpdateLocationSettings()
         {
-            Properties.Settings.Default.WeatherLocation = WeatherLocation.Trim(); // This will be used in the URL so it's important to remove unnecessary white-space
+            Properties.Settings.Default.WeatherLocation = WeatherLocation.Trim(); // This will be used in the API request so it's important to remove unnecessary white-space
             Properties.Settings.Default.Save();
         }
 

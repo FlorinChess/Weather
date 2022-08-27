@@ -23,7 +23,6 @@ namespace Weather.ViewModels
         }
 
         private string _feedbackMessageLength = "0/300";
-
         public string FeedbackMessageLength
         {
             get => _feedbackMessageLength;
