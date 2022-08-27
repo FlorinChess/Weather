@@ -8,6 +8,5 @@
     public class Error
     {
         public ushort code { get; set; }
-        public string message { get; set; }
     }
 }

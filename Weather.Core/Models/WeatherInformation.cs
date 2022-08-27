@@ -18,12 +18,10 @@
         public string last_updated { get; set; }
         public decimal temp_c { get; set; }
         public decimal temp_f { get; set; }
-        public byte is_day { get; set; }
         public Condition condition { get; set; }
         public decimal wind_mph { get; set; }
         public decimal wind_kph { get; set; }
         public string wind_dir { get; set; }
-        public decimal pressure_mb { get; set; }
         public decimal precip_mm { get; set; }
         public decimal precip_in { get; set; }
     }
@@ -50,12 +48,7 @@
         public decimal maxtemp_f { get; set; }
         public decimal mintemp_c { get; set; }
         public decimal mintemp_f { get; set; }
-        public decimal maxwind_mph { get; set; }
-        public decimal maxwind_kph { get; set; }
-        public decimal totalprecip_mm { get; set; }
-        public decimal totalprecip_in { get; set; }
         public ushort daily_chance_of_rain { get; set; }
-        public Condition condition { get; set; }
     }
 
     public class Hour
