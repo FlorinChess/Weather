@@ -9,6 +9,10 @@ namespace Weather.Core
 {
     public static class ApiCaller
     {
+        public const string InvalidWeatherLocation = "Invalid weather location! Please enter a different location!";
+        public const string ServerSideError = "Server-side error! Please try again later!";
+        public const string ErrorOccured = "An error occured! Please try again!";
+
         public static async Task<WeatherInformation> GetWeather(string location, string lang = "en")
         {
             using HttpClient httpClient = new HttpClient();
@@ -27,17 +31,17 @@ namespace Weather.Core
                 ApiError apiError = JsonSerializer.Deserialize<ApiError>(content);
 
                 // Error message that gets displayed depending on the error code
-                string errorMessage = "An error occured! Please try again!";
+                string errorMessage = ErrorOccured;
 
                 if (apiError.error.code == 1006)
                 {
                     // Invalid weather location
-                    errorMessage = "Invalid weather location! Please enter a different location!";
+                    errorMessage = InvalidWeatherLocation;
                 }
                 else if (apiError.error.code == 9999)
                 {
                     // API internal error
-                    errorMessage = "Server-side error! Please try again later!";
+                    errorMessage = ServerSideError;
                 }
                 throw new LocationNotFoundException(errorMessage);
             }

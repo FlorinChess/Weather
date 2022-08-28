@@ -22,17 +22,16 @@ namespace Weather.Core.Tests
         }
 
         [Test]
-        public void GetWeather_IncorrectWeatherLocation_ThrowsLocationNotFoundException()
+        public async Task GetWeather_IncorrectWeatherLocation_ThrowsLocationNotFoundException()
         {
             // Arrange
-            string testLocation = "Not A Real Location";
-            string expectedErrorMessage = "Invalid weather location! Please enter a different location!";
+            string testLocation = "NotARealLocation";
 
             // Act
-            var apiRespone = Assert.ThrowsAsync<LocationNotFoundException>(async () => await ApiCaller.GetWeather(testLocation));
+            var exception = Assert.ThrowsAsync<LocationNotFoundException>(async () => await ApiCaller.GetWeather(testLocation));
 
             // Assert
-            Assert.That(apiRespone.Message, Is.EqualTo(expectedErrorMessage));
+            Assert.That(exception.Message, Is.EqualTo(ApiCaller.InvalidWeatherLocation));
         }
     }
 }
