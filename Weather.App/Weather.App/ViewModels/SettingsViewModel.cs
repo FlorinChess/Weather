@@ -1,9 +1,4 @@
-﻿using MvvmHelpers.Commands;
-using System;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using Weather.App.Helpers;
-using Xamarin.Essentials;
+﻿using Weather.App.Helpers;
 
 namespace Weather.App.ViewModels
 {
@@ -22,11 +17,11 @@ namespace Weather.App.ViewModels
         }
 
         private bool isMetricSystemEnabled = Settings.IsMetricSystemEnabled;
-        public bool IsMetricSystemEnabled 
-        { 
+        public bool IsMetricSystemEnabled
+        {
             get => isMetricSystemEnabled;
-            set 
-            { 
+            set
+            {
                 isMetricSystemEnabled = value;
                 Settings.IsMetricSystemEnabled = value;
                 OnPropertyChanged();

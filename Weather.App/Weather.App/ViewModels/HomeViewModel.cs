@@ -2,19 +2,21 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Weather.App.Helpers;
 using Weather.App.Models;
 using Weather.Core;
 using Weather.Core.Exceptions;
 using Weather.Core.Models;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace Weather.App.ViewModels
 {
     public class HomeViewModel : BaseViewModel
     {
+        private readonly ApiCaller _apiCaller;
+
         #region Properties
 
         public ObservableCollection<WeatherHour> WeatherHours { get; set; }
@@ -57,12 +59,14 @@ namespace Weather.App.ViewModels
 
         #region Commands
 
-        public AsyncCommand UpdateWeatherLocationCommand { get; set; }
+        public AsyncCommand UpdateWeatherLocationCommand { get; }
 
         #endregion
 
         public HomeViewModel()
         {
+            _apiCaller = new ApiCaller(new HttpClient());
+
             WeatherHours = new ObservableCollection<WeatherHour>();
 
             UpdateWeatherLocationCommand = new AsyncCommand(async () =>
@@ -111,7 +115,7 @@ namespace Weather.App.ViewModels
             IsBusy = true;
 
             // Get all the data here
-            Weather = await ApiCaller.GetWeather(_weatherLocation);
+            Weather = await _apiCaller.GetWeather(_weatherLocation);
 
             // Set current weather day
             CurrentWeatherDay = Weather.current;

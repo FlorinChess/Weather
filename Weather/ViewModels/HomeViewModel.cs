@@ -14,6 +14,7 @@ namespace Weather.ViewModels
 {
     public class HomeViewModel : BaseViewModel
     {
+        private readonly ApiCaller _apiCaller;
         private readonly NavigationStore _navigationStore;
 
         #region Properties
@@ -75,18 +76,19 @@ namespace Weather.ViewModels
 
         #endregion
 
-        public HomeViewModel(NavigationStore navigationStore)
+        public HomeViewModel(NavigationStore navigationStore, ApiCaller apiCaller)
         {
+            _apiCaller = apiCaller;
             _navigationStore = navigationStore;
 
             OpenSettingsCommand = new RelayCommand(() =>
             {
-                _navigationStore.CurrentViewModel = new SettingsViewModel(_navigationStore);
+                _navigationStore.CurrentViewModel = new SettingsViewModel(_navigationStore, apiCaller);
             });
 
             OpenFeedbackCommand = new RelayCommand(() =>
             {
-                _navigationStore.CurrentViewModel = new FeedbackViewModel(_navigationStore);
+                _navigationStore.CurrentViewModel = new FeedbackViewModel(_navigationStore, apiCaller);
             });
 
             UpdateWeatherLocationCommand = new RelayCommand(async () =>
@@ -133,7 +135,7 @@ namespace Weather.ViewModels
             IsApiCallFinished = false;
 
             // Get all the data here
-            Weather = await ApiCaller.GetWeather(_weatherLocation);
+            Weather = await _apiCaller.GetWeather(_weatherLocation);
 
             // Populate collections after data has been retrieved
             PopulateCollections();

@@ -1,5 +1,6 @@
 ﻿using System.Windows.Input;
 using Weather.Commands;
+using Weather.Core;
 using Weather.Stores;
 
 namespace Weather.ViewModels
@@ -43,7 +44,7 @@ namespace Weather.ViewModels
 
         #endregion
 
-        public FeedbackViewModel(NavigationStore navigationStore)
+        public FeedbackViewModel(NavigationStore navigationStore, ApiCaller apiCaller)
         {
             _navigationStore = navigationStore;
 
@@ -70,17 +71,17 @@ namespace Weather.ViewModels
                     System.Diagnostics.Process.Start("CMD.exe", $"/C start msedge {url}");
                 }
 
-                _navigationStore.CurrentViewModel = new HomeViewModel(_navigationStore);
+                _navigationStore.CurrentViewModel = new HomeViewModel(_navigationStore, apiCaller);
             });
 
             CloseCommand = new RelayCommand(() =>
             {
-                _navigationStore.CurrentViewModel = new HomeViewModel(_navigationStore);
+                _navigationStore.CurrentViewModel = new HomeViewModel(_navigationStore, apiCaller);
             });
 
             SubmitFeedbackCommand = new RelayCommand(() =>
             {
-                _navigationStore.CurrentViewModel = new HomeViewModel(_navigationStore);
+                _navigationStore.CurrentViewModel = new HomeViewModel(_navigationStore, apiCaller);
             });
         }
     }

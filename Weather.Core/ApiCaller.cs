@@ -7,16 +7,22 @@ using Weather.Core.Models;
 
 namespace Weather.Core
 {
-    public static class ApiCaller
+    public class ApiCaller
     {
         public const string InvalidWeatherLocation = "Invalid weather location! Please enter a different location!";
         public const string ServerSideError = "Server-side error! Please try again later!";
         public const string ErrorOccured = "An error occured! Please try again!";
 
-        public static async Task<WeatherInformation> GetWeather(string location, string lang = "en")
+        private readonly HttpClient _httpClient;
+
+        public ApiCaller(HttpClient httpClient)
         {
-            using HttpClient httpClient = new HttpClient();
-            var response = await httpClient.GetAsync($"https://api.weatherapi.com/v1/forecast.json?key=592925aed75849868d1112324222302&q={location}&days=3&aqi=no&alerts=no&lang={lang}");
+            _httpClient = httpClient;
+        }
+
+        public async Task<WeatherInformation> GetWeather(string location, string lang = "en")
+        {
+            var response = await _httpClient.GetAsync($"https://api.weatherapi.com/v1/forecast.json?key=592925aed75849868d1112324222302&q={location}&days=3&aqi=no&alerts=no&lang={lang}");
 
             if (response.IsSuccessStatusCode!)
             {
