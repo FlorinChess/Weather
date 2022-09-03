@@ -12,7 +12,8 @@
 	<Copyright>Florin Zamfir © 2022</Copyright>
 	<Description>Simple weather application</Description>
 	<Version>1.0.1</Version>
-	<Optimize>true</Optimize>
+	<AssemblyVersion>1.0.1</AssemblyVersion>
+	<FileVersion>1.0.1</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
