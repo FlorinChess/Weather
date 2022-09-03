@@ -1,8 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <Color x:Key="ForegroundMain">#686868</Color>
-    <SolidColorBrush x:Key="ForegroundMainBrush" Color="{StaticResource ForegroundMain}" />
+    <SolidColorBrush x:Key="ForegroundMainBrush" Color="#686868" />
 
     <Color x:Key="ForegroundLight">#ffffff</Color>
     <SolidColorBrush x:Key="ForegroundLightBrush" Color="{StaticResource ForegroundLight}" />
@@ -19,32 +18,25 @@
     <Color x:Key="PrimaryLight">#768fff</Color>
     <SolidColorBrush x:Key="PrimaryLightBrush" Color="{StaticResource PrimaryLight}" />
 
-    <Color x:Key="PrimaryDark">#0039cb</Color>
-    <SolidColorBrush x:Key="PrimaryDarkBrush" Color="{StaticResource PrimaryDark}" />
+    <SolidColorBrush x:Key="PrimaryDarkBrush" Color="#0039cb" />
 
     <!-- Secondary -->
-    <Color x:Key="Secondary">#ffab40</Color>
-    <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}" />
+    <SolidColorBrush x:Key="SecondaryBrush" Color="#ffab40" />
 
-    <Color x:Key="SecondaryLight">#ffdd71</Color>
-    <SolidColorBrush x:Key="SecondaryLightBrush" Color="{StaticResource SecondaryLight}" />
+    <SolidColorBrush x:Key="SecondaryLightBrush" Color="#ffdd71" />
 
     <!-- Gray tones -->
-    <Color x:Key="ForegroundGray">LightGray</Color>
-    <SolidColorBrush x:Key="ForegroundGrayBrush" Color="{StaticResource ForegroundGray}" />
+    <SolidColorBrush x:Key="ForegroundGrayBrush" Color="LightGray" />
 
     <!-- Surfaces -->
-    <Color x:Key="SurfaceGray">#1f1f1f</Color>
-    <SolidColorBrush x:Key="SurfaceGrayBrush" Color="{StaticResource SurfaceGray}" />
+    <SolidColorBrush x:Key="SurfaceGrayBrush" Color="#1f1f1f" />
     
     <Color x:Key="SurfaceElevation2">#222222</Color>
     <SolidColorBrush x:Key="SurfaceElevation2Brush" Color="{StaticResource SurfaceElevation2}" />
 
-    <Color x:Key="SurfaceElevation5">#2c2c2c</Color>
-    <SolidColorBrush x:Key="SurfaceElevation5Brush" Color="{StaticResource SurfaceElevation5}" />
+    <SolidColorBrush x:Key="SurfaceElevation5Brush" Color="#2c2c2c" />
 
-    <Color x:Key="SurfaceElevation6">#2d2d2d</Color>
-    <SolidColorBrush x:Key="SurfaceElevation6Brush" Color="{StaticResource SurfaceElevation6}" />
+    <SolidColorBrush x:Key="SurfaceElevation6Brush" Color="#2d2d2d" />
 
     <!-- Gradients -->
     <LinearGradientBrush x:Key="PrimaryToPrimaryLightGradientBrush" StartPoint="0,0" EndPoint="0,1">
@@ -53,7 +45,6 @@
     </LinearGradientBrush>
     
     <!-- Ko-fi -->
-    <Color x:Key="KoFiPrimary">#29abe0</Color>
-    <SolidColorBrush x:Key="KoFiPrimaryBrush" Color="{StaticResource KoFiPrimary}" />
+    <SolidColorBrush x:Key="KoFiPrimaryBrush" Color="#29abe0" />
     
 </ResourceDictionary>
