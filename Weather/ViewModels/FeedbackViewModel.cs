@@ -1,6 +1,7 @@
-﻿using System.Windows.Input;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Windows.Input;
 using Weather.Commands;
-using Weather.Core;
 using Weather.Stores;
 
 namespace Weather.ViewModels
@@ -44,11 +45,11 @@ namespace Weather.ViewModels
 
         #endregion
 
-        public FeedbackViewModel(NavigationStore navigationStore, ApiCaller apiCaller)
+        public FeedbackViewModel(NavigationStore navigationStore, IServiceProvider serviceProvider)
         {
             _navigationStore = navigationStore;
 
-            DonateCommand = new RelayCommand(() =>
+            DonateCommand = new RelayCommand(_ =>
             {
                 // Registry path for Google Chrome
                 var path = Microsoft.Win32.Registry.GetValue(@"HKEY_CLASSES_ROOT\ChromeHTML\shell\open\command", null, null) as string;
@@ -71,18 +72,17 @@ namespace Weather.ViewModels
                     System.Diagnostics.Process.Start("CMD.exe", $"/C start msedge {url}");
                 }
 
-                _navigationStore.CurrentViewModel = new HomeViewModel(_navigationStore, apiCaller);
+                NavigateHome(serviceProvider);
             });
 
-            CloseCommand = new RelayCommand(() =>
-            {
-                _navigationStore.CurrentViewModel = new HomeViewModel(_navigationStore, apiCaller);
-            });
+            CloseCommand = new RelayCommand(_ =>  NavigateHome(serviceProvider));
 
-            SubmitFeedbackCommand = new RelayCommand(() =>
-            {
-                _navigationStore.CurrentViewModel = new HomeViewModel(_navigationStore, apiCaller);
-            });
+            SubmitFeedbackCommand = new RelayCommand(_ => NavigateHome(serviceProvider));
+        }
+
+        private void NavigateHome(IServiceProvider serviceProvider)
+        {
+            _navigationStore.CurrentViewModel = serviceProvider.GetRequiredService<HomeViewModel>();
         }
     }
 }

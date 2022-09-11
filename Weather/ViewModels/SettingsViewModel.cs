@@ -1,6 +1,7 @@
-﻿using System.Windows.Input;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Windows.Input;
 using Weather.Commands;
-using Weather.Core;
 using Weather.Stores;
 
 namespace Weather.ViewModels
@@ -64,20 +65,20 @@ namespace Weather.ViewModels
 
         #endregion
 
-        public SettingsViewModel(NavigationStore navigationStore, ApiCaller apiCaller)
+        public SettingsViewModel(NavigationStore navigationStore, IServiceProvider serviceProvider)
         {
-            this._navigationStore = navigationStore;
+            _navigationStore = navigationStore;
 
-            CancelCommand = new RelayCommand(() =>
+            CancelCommand = new RelayCommand(_ =>
             {
-                _navigationStore.CurrentViewModel = new HomeViewModel(_navigationStore, apiCaller);
+                _navigationStore.CurrentViewModel = serviceProvider.GetRequiredService<HomeViewModel>();
             });
 
-            SaveSettingsCommand = new RelayCommand(() =>
+            SaveSettingsCommand = new RelayCommand(_ =>
             {
                 UpdateSettings();
 
-                _navigationStore.CurrentViewModel = new HomeViewModel(_navigationStore, apiCaller);
+                _navigationStore.CurrentViewModel = serviceProvider.GetRequiredService<HomeViewModel>();
             });
 
             LoadSettings();

@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -76,22 +78,22 @@ namespace Weather.ViewModels
 
         #endregion
 
-        public HomeViewModel(NavigationStore navigationStore, ApiCaller apiCaller)
+        public HomeViewModel(NavigationStore navigationStore, ApiCaller apiCaller, IServiceProvider serviceProvider)
         {
             _apiCaller = apiCaller;
             _navigationStore = navigationStore;
 
-            OpenSettingsCommand = new RelayCommand(() =>
+            OpenSettingsCommand = new RelayCommand(_ =>
             {
-                _navigationStore.CurrentViewModel = new SettingsViewModel(_navigationStore, apiCaller);
+                _navigationStore.CurrentViewModel = serviceProvider.GetRequiredService<SettingsViewModel>();
             });
 
-            OpenFeedbackCommand = new RelayCommand(() =>
+            OpenFeedbackCommand = new RelayCommand(_ =>
             {
-                _navigationStore.CurrentViewModel = new FeedbackViewModel(_navigationStore, apiCaller);
+                _navigationStore.CurrentViewModel = serviceProvider.GetRequiredService<FeedbackViewModel>();
             });
 
-            UpdateWeatherLocationCommand = new RelayCommand(async () =>
+            UpdateWeatherLocationCommand = new RelayCommand(async _ =>
             {
                 await UpdateWeatherData();
             });
@@ -135,7 +137,7 @@ namespace Weather.ViewModels
             IsApiCallFinished = false;
 
             // Get all the data here
-            Weather = await _apiCaller.GetWeather(_weatherLocation);
+            Weather = await _apiCaller.GetWeather(NormalizedWeatherLocation(_weatherLocation));
 
             // Populate collections after data has been retrieved
             PopulateCollections();
@@ -154,7 +156,8 @@ namespace Weather.ViewModels
             Application.Current.Dispatcher.Invoke(() =>
             {
                 // Reset collections
-                WeatherHours.Clear();
+                if (WeatherHours.Count != 0) 
+                    WeatherHours.Clear();
 
                 var weatherDay = Weather.forecast.forecastday[0];
 
@@ -185,7 +188,7 @@ namespace Weather.ViewModels
 
         private void UpdateLocationSettings()
         {
-            Properties.Settings.Default.WeatherLocation = WeatherLocation.Trim(); // This will be used in the API request so it's important to remove unnecessary white-space
+            Properties.Settings.Default.WeatherLocation = NormalizedWeatherLocation(WeatherLocation); // This will be used in the API request so it's important to remove unnecessary white-space
             Properties.Settings.Default.Save();
         }
 
@@ -194,7 +197,7 @@ namespace Weather.ViewModels
         /// </summary>
         private void UpdateUserInterface()
         {
-            FullWeatherLocation = $"{WeatherLocation}, {Weather.location.country}";
+            FullWeatherLocation = $"{NormalizedWeatherLocation(WeatherLocation)}, {Weather.location.country}";
 
             DateTime date = DateTime.Parse(CurrentWeatherDay.last_updated);
 
@@ -236,6 +239,11 @@ namespace Weather.ViewModels
 
             // Set chance of rain
             ChanceOfRain = $"{Weather.forecast.forecastday[0].day.daily_chance_of_rain}%";
+        }
+
+        private static string NormalizedWeatherLocation(string weatherLocation)
+        {
+            return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(weatherLocation.ToLower()).Trim();
         }
 
         #endregion

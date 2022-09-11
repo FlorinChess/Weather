@@ -8,6 +8,7 @@
     <PackageIcon></PackageIcon>
     <ApplicationIcon>Icons\weather.ico</ApplicationIcon>
     <SignAssembly>False</SignAssembly>
+	<RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <Authors>Florin Zamfir</Authors>
 	<Copyright>Florin Zamfir © 2022</Copyright>
 	<Description>Simple weather application</Description>
@@ -39,6 +40,10 @@
 
   <ItemGroup>
     <Content Include="Icons\weather.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>

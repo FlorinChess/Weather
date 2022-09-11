@@ -1,4 +1,6 @@
-﻿using System.Net.Http;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Net.Http;
 using System.Windows;
 using Weather.Core;
 using Weather.Stores;
@@ -11,20 +13,29 @@ namespace Weather
     /// </summary>
     public partial class App : Application
     {
-        private readonly NavigationStore _navigationStore;
-        private readonly ApiCaller _apiCaller;
+        private readonly IServiceProvider _serviceProvider;
         public App()
         {
-            _apiCaller = new ApiCaller(new HttpClient());
+            IServiceCollection services = new ServiceCollection();
 
-            _navigationStore = new NavigationStore();
-            _navigationStore.CurrentViewModel = new HomeViewModel(_navigationStore, _apiCaller);
+            services.AddSingleton<HttpClient>();
+            services.AddSingleton<ApiCaller>();
+            services.AddSingleton<NavigationStore>();
+
+            services.AddTransient<HomeViewModel>();
+            services.AddTransient<SettingsViewModel>();
+            services.AddSingleton<FeedbackViewModel>();
+
+            _serviceProvider = services.BuildServiceProvider();
         }
         protected override void OnStartup(StartupEventArgs e)
         {
+            var navigationStore = _serviceProvider.GetRequiredService<NavigationStore>();
+            navigationStore.CurrentViewModel = _serviceProvider.GetRequiredService<HomeViewModel>();
+
             MainWindow = new MainWindow()
             {
-                DataContext = new MainViewModel(this.MainWindow, _navigationStore)
+                DataContext = new MainViewModel(this.MainWindow, _serviceProvider.GetRequiredService<NavigationStore>())
             };
             MainWindow.Show();
             base.OnStartup(e);

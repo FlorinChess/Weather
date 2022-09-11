@@ -157,9 +157,9 @@ namespace Weather.ViewModels
             };
 
             // Create commands
-            MinimizeCommand = new RelayCommand(() => _window.WindowState = WindowState.Minimized);
-            MaximizeCommand = new RelayCommand(() => _window.WindowState ^= WindowState.Maximized);
-            CloseCommand = new RelayCommand(() => _window.Close());
+            MinimizeCommand = new RelayCommand(_ => _window.WindowState = WindowState.Minimized);
+            MaximizeCommand = new RelayCommand(_ => _window.WindowState ^= WindowState.Maximized);
+            CloseCommand = new RelayCommand(_ => _window.Close());
 
             // Fix window resize issue
             var resizer = new WindowResizer(_window);
