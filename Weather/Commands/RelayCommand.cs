@@ -1,70 +1,28 @@
 ﻿using System;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Weather.Commands
 {
     public class RelayCommand : ICommand
     {
-        #region Private Members
+        private readonly Action<object?> _execute;
+        private readonly Func<object?, bool> _canExecute;
+        public event EventHandler? CanExecuteChanged;
 
-        /// <summary>
-        /// The action to run
-        /// </summary>
-        private readonly Action _action;
-
-        private readonly Func<Task> _func;
-
-        #endregion
-
-        #region Public Events
-
-        /// <summary>
-        /// The event thats fired when the <see cref="CanExecute(object)"/> value has changed
-        /// </summary>
-        public event EventHandler? CanExecuteChanged = (sender, e) => { };
-
-        #endregion
-
-        #region Constructor
-
-        /// <summary>
-        /// Default constructor
-        /// </summary>
-        public RelayCommand(Action action)
+        public RelayCommand(Action<object?> execute, Func<object?, bool> canExecute = null)
         {
-            _action = action;
+            _execute = execute;
+            _canExecute = canExecute;
         }
 
-        public RelayCommand(Func<Task> func)
+        public bool CanExecute(object? parameter)
         {
-            _func = func;
+            return _canExecute == null || _canExecute(parameter);
         }
 
-        #endregion
-
-        #region Command Methods
-
-        /// <summary>
-        /// A relay command can always execute
-        /// </summary>
-        /// <param name="parameter"></param>
-        /// <returns></returns>
-        public bool CanExecute(object? parameter) => true;
-
-        /// <summary>
-        /// Executes the commands Action
-        /// </summary>
-        /// <param name="parameter"></param>
-        public async void Execute(object? parameter)
+        public void Execute(object? parameter)
         {
-            _action?.Invoke();
-
-            if (_func == null) return;
-
-            await _func?.Invoke();
-        } 
-
-        #endregion
+            _execute(parameter);
+        }
     }
 }
