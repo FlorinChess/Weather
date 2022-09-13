@@ -3,53 +3,38 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Weather.Views"
              xmlns:viewmodels="clr-namespace:Weather.ViewModels"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance {x:Type viewmodels:FeedbackViewModel}, IsDesignTimeCreatable=False}"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>    
-            <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         
         <TextBlock 
-            Grid.ColumnSpan="2"
-            Grid.Row="0"
             Text="Feedback" 
             Padding="20 10" 
             Style="{StaticResource TitleTextBlock}"          
             />
-
-        <StackPanel
-            Grid.Column="0"
-            Grid.Row="1">
-            <TextBox 
-                Style="{StaticResource MaterialFeedbackTextBox}"
-                Margin="20 10 20 2" 
-                MaxLength="300"/>
-            
+        
+        <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
             <TextBlock 
-                Text="{Binding FeedbackMessageLength, FallbackValue='0/300'}"
-                Foreground="{StaticResource ForegroundMainBrush}"
-                HorizontalAlignment="Right"
-                Margin="0 0 20 0"/>
-
-            <TextBlock 
+                Style="{StaticResource Body1TextBlock}" 
+                Margin="0 20 0 10" TextAlignment="Center" 
                 Text="Suggest a new feature or report a bug. Any feedback helps me make the app better."
-                Style="{StaticResource Body2TextBlock}"/>
-
-        </StackPanel>
-
-        <StackPanel Grid.Row="2" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                />
+            <Button 
+                Style="{StaticResource MaterialContainedButton}"
+                Command="{Binding SubmitFeedbackCommand}"
+                Content="SUBMIT FEEDBACK"
+                FontSize="16"
+                Margin="10 0 10 40" Width="190"
+                UseLayoutRounding="True"
+                />
             <TextBlock Style="{StaticResource Body1TextBlock}" Margin="0 30 0 10" TextAlignment="Center">
-                <Bold>Weather</Bold> is an open-source project created and maintained by one person. If you like app and you would like to support me than check out the link below  
+                <Bold>Weather</Bold> is an open-source project created and maintained by one person. If you like the app and you would like to support me than check out the link below  
                 <Viewbox Stretch="Fill" Height="16" Width="16" Margin="0 6 0 0">
                     <Path 
                         Data="M24 41.95 21.95 40.1Q13.8 32.65 8.9 27.1Q4 21.55 4 15.85Q4 11.35 7.025 8.325Q10.05 5.3 14.5 5.3Q17.05 5.3 19.55 6.525Q22.05 7.75 24 10.55Q26.2 7.75 28.55 6.525Q30.9 5.3 33.5 5.3Q37.95 5.3 40.975 8.325Q44 11.35 44 15.85Q44 21.55 39.1 27.1Q34.2 32.65 26.05 40.1Z"
@@ -64,25 +49,15 @@
                 Style="{StaticResource KoFiButton}"
                 />
         </StackPanel>
-        <Button 
-            Grid.Column="1"
-            Grid.Row="1"
-            VerticalAlignment="Top"
-            Style="{StaticResource MaterialContainedButton}"
-            Command="{Binding SubmitFeedbackCommand}"
-            Content="SUBMIT"
-            Margin="10"
-            UseLayoutRounding="True"
-            />
 
         <Button 
-            Grid.Row="2"
-            Grid.Column="1"
+            Grid.Row="1"
             Style="{StaticResource MaterialTextButton}"
             Command="{Binding CloseCommand}"
             Content="CLOSE"
             Margin="10"
             VerticalAlignment="Bottom"
+            HorizontalAlignment="Right"
             />
     </Grid>
 </UserControl>
