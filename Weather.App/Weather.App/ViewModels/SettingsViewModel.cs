@@ -2,7 +2,7 @@
 
 namespace Weather.App.ViewModels
 {
-    public class SettingsViewModel : BaseViewModel
+    public sealed class SettingsViewModel : BaseViewModel
     {
         private string _weatherLocation = Settings.WeatherLocation;
         public string WeatherLocation

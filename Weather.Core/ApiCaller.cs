@@ -8,7 +8,7 @@ using Microsoft.Extensions.Caching.Memory;
 
 namespace Weather.Core
 {
-    public class ApiCaller
+    public sealed class ApiCaller
     {
         public const string InvalidWeatherLocation = "Invalid weather location! Please enter a different location!";
         public const string ServerSideError = "Server-side error! Please try again later!";
@@ -31,7 +31,7 @@ namespace Weather.Core
             }
             else
             {
-                var response = await _httpClient.GetAsync($"https://api.weatherapi.com/v1/forecast.json?key=592925aed75849868d1112324222302&q={location}&days=3&aqi=no&alerts=no&lang={lang}");
+                var response = await _httpClient.GetAsync($"https://api.weatherapi.com/v1/forecast.json?key=592925aed75849868d1112324222302&q={location}&days=1&aqi=no&alerts=no&lang={lang}");
 
                 if (response.IsSuccessStatusCode!)
                 {

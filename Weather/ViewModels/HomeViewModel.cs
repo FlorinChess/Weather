@@ -14,7 +14,7 @@ using Weather.Stores;
 
 namespace Weather.ViewModels
 {
-    public class HomeViewModel : BaseViewModel
+    public sealed class HomeViewModel : BaseViewModel
     {
         private readonly ApiCaller _apiCaller;
         private readonly NavigationStore _navigationStore;

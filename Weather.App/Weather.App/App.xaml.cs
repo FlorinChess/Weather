@@ -2,7 +2,7 @@
 
 namespace Weather.App
 {
-    public partial class App : Application
+    public sealed partial class App : Application
     {
 
         public App()

@@ -4,7 +4,7 @@ using System.Windows.Data;
 
 namespace Weather.Converters
 {
-    public class StringToSourceConverter : IValueConverter
+    public sealed class StringToSourceConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

@@ -3,7 +3,7 @@ using Xamarin.Forms;
 
 namespace Weather.App.ViewModels
 {
-    public class FeedbackViewModel : BaseViewModel
+    public sealed class FeedbackViewModel : BaseViewModel
     {
         #region Commands
 

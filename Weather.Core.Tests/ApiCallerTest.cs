@@ -11,14 +11,19 @@ using Weather.Core.Models;
 namespace Weather.Core.Tests
 {
     [TestFixture]
-    public class ApiCallerTest
+    public sealed class ApiCallerTest
     {
-        private Mock<HttpMessageHandler> _httpMessageHandlerMock; 
+        private Mock<HttpMessageHandler> _httpMessageHandlerMock;
 
         [SetUp]
         public void Setup()
         {
             _httpMessageHandlerMock = new Mock<HttpMessageHandler>();
+        }
+
+        private ApiCaller InitializeSUT()
+        {
+            return new ApiCaller(new HttpClient(_httpMessageHandlerMock.Object));
         }
 
         [Test]
@@ -35,12 +40,13 @@ namespace Weather.Core.Tests
             _httpMessageHandlerMock
                 .Protected()
                 .Setup<Task<HttpResponseMessage>>(
-                  "GetAsync",
+                  "SendAsync",
                   ItExpr.IsAny<HttpRequestMessage>(),
                   ItExpr.IsAny<CancellationToken>())
                .ReturnsAsync(response);
 
-            var apiCaller = SetupApiCaller(_httpMessageHandlerMock.Object);
+
+            var apiCaller = InitializeSUT();
 
             string testLocation = "New York";
 
@@ -57,7 +63,7 @@ namespace Weather.Core.Tests
             // Arrange
             var response = new HttpResponseMessage
             {
-                StatusCode = HttpStatusCode.OK,
+                StatusCode = HttpStatusCode.BadRequest,
                 Content = new StringContent(@"[{ ""id"": 1, ""title"": ""Cool post!""}, { ""id"": 100, ""title"": ""Some title""}]"),
             };
 
@@ -69,7 +75,7 @@ namespace Weather.Core.Tests
                   ItExpr.IsAny<CancellationToken>())
                .ReturnsAsync(response);
 
-            var apiCaller = SetupApiCaller(_httpMessageHandlerMock.Object);
+            var apiCaller = InitializeSUT();
 
             string testLocation = "NotARealLocation";
 
@@ -78,11 +84,6 @@ namespace Weather.Core.Tests
 
             // Assert
             Assert.That(exception.Message, Is.EqualTo(ApiCaller.InvalidWeatherLocation));
-        }
-
-        private static ApiCaller SetupApiCaller(HttpMessageHandler httpMessageHandler)
-        {
-            return new ApiCaller(new HttpClient(httpMessageHandler));
         }
     }
 }

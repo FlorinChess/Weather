@@ -4,7 +4,7 @@ using Xamarin.Forms;
 
 namespace Weather.App.Converters
 {
-    public class StringToSourceConverter : IValueConverter
+    public sealed class StringToSourceConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

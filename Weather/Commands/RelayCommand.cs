@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 namespace Weather.Commands
 {
-    public class RelayCommand : ICommand
+    public sealed class RelayCommand : ICommand
     {
         private readonly Action<object?> _execute;
         private readonly Func<object?, bool> _canExecute;

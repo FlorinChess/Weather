@@ -13,7 +13,7 @@ using Xamarin.Forms;
 
 namespace Weather.App.ViewModels
 {
-    public class HomeViewModel : BaseViewModel
+    public sealed class HomeViewModel : BaseViewModel
     {
         private readonly ApiCaller _apiCaller;
 

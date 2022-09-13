@@ -5,7 +5,7 @@ using Weather.Stores;
 
 namespace Weather.ViewModels
 {
-    public class MainViewModel : BaseViewModel
+    public sealed class MainViewModel : BaseViewModel
     {
         #region Private Members
 

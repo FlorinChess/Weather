@@ -6,7 +6,7 @@ using Weather.Stores;
 
 namespace Weather.ViewModels
 {
-    public class SettingsViewModel : BaseViewModel
+    public sealed class SettingsViewModel : BaseViewModel
     {
         private readonly NavigationStore _navigationStore;
 
