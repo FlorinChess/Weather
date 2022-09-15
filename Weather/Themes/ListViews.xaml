@@ -1,11 +1,9 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:converters="clr-namespace:Weather.Converters">
-    <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="TextBlocks.xaml" />
-    </ResourceDictionary.MergedDictionaries>
-    
+                    xmlns:converters="clr-namespace:Weather.Converters">    
     <!-- Weather cards ordered by day -->
+    <converters:StringToSourceConverter x:Key="StringToSourceConverter"/>
+    
     <Style TargetType="{x:Type ListViewItem}" x:Key="WeatherCardByHourListViewItem">
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="Background" Value="{StaticResource PrimaryBrush}" />
@@ -15,9 +13,6 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListViewItem}">
-                    <ControlTemplate.Resources>
-                        <converters:StringToSourceConverter x:Key="StringToSourceConverter"/>
-                    </ControlTemplate.Resources>
                     <Border 
                         Background="{TemplateBinding Background}"
                         CornerRadius="5"

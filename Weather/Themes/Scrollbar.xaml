@@ -5,14 +5,13 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Thumb}">
-                    <Grid x:Name="Grid">
-                        <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" Height="Auto" Fill="Transparent" />
-                        <Border x:Name="Rectangle1" CornerRadius="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" Height="Auto" Background="{TemplateBinding Background}" />
+                    <Grid>
+                        <Rectangle x:Name="rectangle" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" Height="Auto" Fill="{TemplateBinding Foreground}" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="Tag" Value="Horizontal">
-                            <Setter TargetName="Rectangle1" Property="Width" Value="Auto" />
-                            <Setter TargetName="Rectangle1" Property="Height" Value="7" />
+                            <Setter TargetName="rectangle" Property="Width" Value="Auto" />
+                            <Setter TargetName="rectangle" Property="Height" Value="8" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -31,7 +30,7 @@
                     <Grid x:Name="GridRoot" Width="8" Background="{TemplateBinding Background}">
                         <Track x:Name="PART_Track" Grid.Row="0" IsDirectionReversed="true" Focusable="false">
                             <Track.Thumb>
-                                <Thumb x:Name="Thumb" Background="{TemplateBinding Foreground}" Style="{DynamicResource ScrollThumbs}" />
+                                <Thumb x:Name="Thumb" Foreground="{TemplateBinding Foreground}" Style="{StaticResource ScrollThumbs}" />
                             </Track.Thumb>
                         </Track>
                     </Grid>
