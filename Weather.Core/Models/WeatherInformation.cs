@@ -1,19 +1,19 @@
 ﻿namespace Weather.Core.Models
 {
-    public class WeatherInformation
+    public sealed class WeatherInformation
     {
         public Location location { get; set; }
         public Current current { get; set; }
         public Forecast forecast { get; set; }
     }
 
-    public class Location
+    public sealed class Location
     {
         public string country { get; set; }
         public string localtime { get; set; }
     }
 
-    public class Current
+    public sealed class Current
     {
         public string last_updated { get; set; }
         public decimal temp_c { get; set; }
@@ -26,23 +26,23 @@
         public decimal precip_in { get; set; }
     }
 
-    public class Condition
+    public sealed class Condition
     {
         public string text { get; set; }
     }
 
-    public class Forecast
+    public sealed class Forecast
     {
         public Forecastday[] forecastday { get; set; }
     }
 
-    public class Forecastday
+    public sealed class Forecastday
     {
         public Day day { get; set; }
         public Hour[] hour { get; set; }
     }
 
-    public class Day
+    public sealed class Day
     {
         public decimal maxtemp_c { get; set; }
         public decimal maxtemp_f { get; set; }
@@ -51,7 +51,7 @@
         public ushort daily_chance_of_rain { get; set; }
     }
 
-    public class Hour
+    public sealed class Hour
     {
         public string time { get; set; }
         public decimal temp_c { get; set; }
