@@ -3,59 +3,26 @@ using System.Windows.Input;
 
 namespace Weather.Commands
 {
-    public class RelayCommand : ICommand
+    public sealed class RelayCommand : ICommand
     {
-        #region Private Members
+        private readonly Action<object?> _execute;
+        private readonly Func<object?, bool> _canExecute;
+        public event EventHandler? CanExecuteChanged;
 
-        /// <summary>
-        /// The action to run
-        /// </summary>
-        private Action mAction;
-
-        #endregion
-
-        #region Public Events
-
-        /// <summary>
-        /// The event thats fired when the <see cref="CanExecute(object)"/> value has changed
-        /// </summary>
-        public event EventHandler CanExecuteChanged = (sender, e) => { };
-
-        #endregion
-
-        #region Constructor
-
-        /// <summary>
-        /// Default constructor
-        /// </summary>
-        public RelayCommand(Action action)
+        public RelayCommand(Action<object?> execute, Func<object?, bool> canExecute = null)
         {
-            mAction = action;
+            _execute = execute;
+            _canExecute = canExecute;
         }
 
-        #endregion
-
-        #region Command Methods
-
-        /// <summary>
-        /// A relay command can always execute
-        /// </summary>
-        /// <param name="parameter"></param>
-        /// <returns></returns>
-        public bool CanExecute(object parameter)
+        public bool CanExecute(object? parameter)
         {
-            return true;
+            return _canExecute == null || _canExecute(parameter);
         }
 
-        /// <summary>
-        /// Executes the commands Action
-        /// </summary>
-        /// <param name="parameter"></param>
-        public void Execute(object parameter)
+        public void Execute(object? parameter)
         {
-            mAction();
+            _execute(parameter);
         }
-
-        #endregion
     }
 }

@@ -2,17 +2,20 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net5.0-windows10.0.22000.0</TargetFramework>
+    <TargetFramework>net6.0-windows10.0.22621.0</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <PackageIcon></PackageIcon>
     <ApplicationIcon>Icons\weather.ico</ApplicationIcon>
     <SignAssembly>False</SignAssembly>
+	<RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <Authors>Florin Zamfir</Authors>
 	<Copyright>Florin Zamfir © 2022</Copyright>
 	<Description>Simple weather application</Description>
 	<Version>1.0.1</Version>
-	<Optimize>true</Optimize>
+	<AssemblyVersion>1.0.1</AssemblyVersion>
+	<FileVersion>1.0.1</FileVersion>
+	<SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -38,6 +41,12 @@
 
   <ItemGroup>
     <Content Include="Icons\weather.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>

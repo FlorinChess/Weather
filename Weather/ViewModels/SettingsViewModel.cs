@@ -1,10 +1,12 @@
-﻿using System.Windows.Input;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Windows.Input;
 using Weather.Commands;
 using Weather.Stores;
 
 namespace Weather.ViewModels
 {
-    public class SettingsViewModel : BaseViewModel
+    public sealed class SettingsViewModel : BaseViewModel
     {
         private readonly NavigationStore _navigationStore;
 
@@ -67,20 +69,20 @@ namespace Weather.ViewModels
 
         #endregion
 
-        public SettingsViewModel(NavigationStore navigationStore)
+        public SettingsViewModel(NavigationStore navigationStore, IServiceProvider serviceProvider)
         {
-            this._navigationStore = navigationStore;
+            _navigationStore = navigationStore;
 
-            CancelCommand = new RelayCommand(() =>
+            CancelCommand = new RelayCommand(_ =>
             {
-                _navigationStore.CurrentViewModel = new HomeViewModel(_navigationStore);
+                _navigationStore.CurrentViewModel = serviceProvider.GetRequiredService<HomeViewModel>();
             });
 
-            SaveSettingsCommand = new RelayCommand(() =>
+            SaveSettingsCommand = new RelayCommand(_ =>
             {
                 UpdateSettings();
 
-                _navigationStore.CurrentViewModel = new HomeViewModel(_navigationStore);
+                _navigationStore.CurrentViewModel = serviceProvider.GetRequiredService<HomeViewModel>();
             });
 
             LoadSettings();
@@ -119,7 +121,7 @@ namespace Weather.ViewModels
         {
             if (string.IsNullOrEmpty(WeatherLocation)) return;
 
-            Properties.Settings.Default.WeatherLocation = WeatherLocation.Trim(); // This will be used in the URL so it's important to remove unnecessary white-space
+            Properties.Settings.Default.WeatherLocation = WeatherLocation.Trim(); // This will be used in the API request so it's important to remove unnecessary white-space
         }
 
         private void UpdateMeasurementUnit()

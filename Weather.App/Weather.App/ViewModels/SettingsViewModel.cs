@@ -1,13 +1,8 @@
-﻿using MvvmHelpers.Commands;
-using System;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using Weather.App.Helpers;
-using Xamarin.Essentials;
+﻿using Weather.App.Helpers;
 
 namespace Weather.App.ViewModels
 {
-    public class SettingsViewModel : BaseViewModel
+    public sealed class SettingsViewModel : BaseViewModel
     {
         private string _weatherLocation = Settings.WeatherLocation;
         public string WeatherLocation
@@ -22,11 +17,11 @@ namespace Weather.App.ViewModels
         }
 
         private bool isMetricSystemEnabled = Settings.IsMetricSystemEnabled;
-        public bool IsMetricSystemEnabled 
-        { 
+        public bool IsMetricSystemEnabled
+        {
             get => isMetricSystemEnabled;
-            set 
-            { 
+            set
+            {
                 isMetricSystemEnabled = value;
                 Settings.IsMetricSystemEnabled = value;
                 OnPropertyChanged();

@@ -11,7 +11,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weather.App.Android", "Weat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Weather.App", "Weather.App\Weather.App\Weather.App.csproj", "{AAB47E30-74A9-4AFD-A5CA-A04E0C8267F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weather.Core.Tests", "Weather.Core.Tests\Weather.Core.Tests.csproj", "{0096B750-3237-4E04-ABE1-D59D3A8D9255}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Weather.Core.Tests", "Weather.Core.Tests\Weather.Core.Tests.csproj", "{0096B750-3237-4E04-ABE1-D59D3A8D9255}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5F1D0474-0533-4D0D-9929-7460E8C608B8}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

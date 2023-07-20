@@ -3,7 +3,7 @@ using Weather.ViewModels;
 
 namespace Weather.Stores
 {
-    public class NavigationStore
+    public sealed class NavigationStore
     {
         public event Action CurrentViewModelChanged;
 

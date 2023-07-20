@@ -1,6 +1,6 @@
 ﻿namespace Weather.Models
 {
-    public class WeatherHour
+    public sealed class WeatherHour
     {
         public string Temperature { get; set; }
         public string Text { get; set; }
