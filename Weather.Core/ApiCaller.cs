@@ -17,11 +17,20 @@ namespace Weather.Core
 
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly IMemoryCache _memoryCache;
+        private readonly HttpClient _httpClient;
+
+        public ApiCaller(HttpClient httpClient, IMemoryCache memoryCache)
+        {
+            _httpClient = httpClient;
+            _memoryCache = memoryCache;
+        }
 
         public ApiCaller(IHttpClientFactory httpClientFactory, IMemoryCache memoryCache)
         {
             _httpClientFactory = httpClientFactory;
             _memoryCache = memoryCache;
+
+            _httpClient = _httpClientFactory.CreateClient();
         }
 
         public async ValueTask<WeatherInformation> GetWeather(string location, string lang = "en")
@@ -32,8 +41,7 @@ namespace Weather.Core
             }
             else
             {
-                var client = _httpClientFactory.CreateClient();
-                var response = await client.GetAsync($"https://api.weatherapi.com/v1/forecast.json?key=592925aed75849868d1112324222302&q={location}&days=1&aqi=no&alerts=no&lang={lang}");
+                var response = await _httpClient.GetAsync($"https://api.weatherapi.com/v1/forecast.json?key=592925aed75849868d1112324222302&q={location}&days=1&aqi=no&alerts=no&lang={lang}");
 
                 if (response.IsSuccessStatusCode)
                 {

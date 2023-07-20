@@ -1,4 +1,5 @@
-﻿using MvvmHelpers.Commands;
+﻿using Microsoft.Extensions.Caching.Memory;
+using MvvmHelpers.Commands;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -65,7 +66,7 @@ namespace Weather.App.ViewModels
 
         public HomeViewModel()
         {
-            _apiCaller = new ApiCaller(new HttpClient());
+            _apiCaller = new ApiCaller(new HttpClient(), new MemoryCache(new MemoryCacheOptions()));
 
             WeatherHours = new ObservableCollection<WeatherHour>();
 
