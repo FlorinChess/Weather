@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Net.Http;
 using System.Windows;
@@ -18,7 +19,9 @@ namespace Weather
         {
             IServiceCollection services = new ServiceCollection();
 
-            services.AddSingleton<HttpClient>();
+            services.AddHttpClient();
+            services.AddSingleton<IMemoryCache, MemoryCache>();
+
             services.AddSingleton<ApiCaller>();
             services.AddSingleton<NavigationStore>();
 
