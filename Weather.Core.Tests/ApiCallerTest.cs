@@ -1,4 +1,5 @@
-﻿using Moq;
+﻿using Microsoft.Extensions.Caching.Memory;
+using Moq;
 using Moq.Protected;
 using NUnit.Framework;
 using System.Net;
@@ -23,7 +24,7 @@ namespace Weather.Core.Tests
 
         private ApiCaller InitializeSUT()
         {
-            return new ApiCaller(new HttpClient(_httpMessageHandlerMock.Object));
+            return new ApiCaller(new HttpClient(_httpMessageHandlerMock.Object), new MemoryCache(new MemoryCacheOptions()));
         }
 
         [Test]
