@@ -19,4 +19,13 @@
     <ProjectReference Include="..\Weather.Core\Weather.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="test_api_response.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="test_error_response.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

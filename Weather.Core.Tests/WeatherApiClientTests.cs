@@ -2,6 +2,8 @@
 using Moq;
 using Moq.Protected;
 using NUnit.Framework;
+using System.IO;
+using System;
 using System.Net;
 using System.Net.Http;
 using System.Threading;
@@ -12,7 +14,7 @@ using Weather.Core.Models;
 namespace Weather.Core.Tests
 {
     [TestFixture]
-    public sealed class ApiCallerTest
+    public sealed class WeatherApiClientTests
     {
         private Mock<HttpMessageHandler> _httpMessageHandlerMock;
 
@@ -22,20 +24,21 @@ namespace Weather.Core.Tests
             _httpMessageHandlerMock = new Mock<HttpMessageHandler>();
         }
 
-        private ApiCaller InitializeSUT()
+        private WeatherApiClient InitializeSUT()
         {
-            return new ApiCaller(new HttpClient(_httpMessageHandlerMock.Object), new MemoryCache(new MemoryCacheOptions()));
+            return new WeatherApiClient(new HttpClient(_httpMessageHandlerMock.Object), new MemoryCache(new MemoryCacheOptions()));
         }
 
         [Test]
         public async Task GetWeather_CorrectWeatherLocation_ReturnsWeatherInformation()
         {
             // Arrange
+            var json = await File.ReadAllTextAsync(Path.Combine(Environment.CurrentDirectory, "test_api_response.json"));
 
-            var response = new HttpResponseMessage
+            var fakeResponse = new HttpResponseMessage
             {
                 StatusCode = HttpStatusCode.OK,
-                Content = new StringContent(@"[{ ""id"": 1, ""title"": ""Cool post!""}, { ""id"": 100, ""title"": ""Some title""}]"),
+                Content = new StringContent(json),
             };
 
             _httpMessageHandlerMock
@@ -44,15 +47,15 @@ namespace Weather.Core.Tests
                   "SendAsync",
                   ItExpr.IsAny<HttpRequestMessage>(),
                   ItExpr.IsAny<CancellationToken>())
-               .ReturnsAsync(response);
+               .ReturnsAsync(fakeResponse);
 
 
-            var apiCaller = InitializeSUT();
+            var weatherClient = InitializeSUT();
 
             string testLocation = "New York";
 
             // Act
-            var apiRespone = await apiCaller.GetWeather(testLocation);
+            var apiRespone = await weatherClient.GetWeather(testLocation);
 
             // Assert
             Assert.That(apiRespone, Is.InstanceOf<WeatherInformation>());
@@ -62,10 +65,11 @@ namespace Weather.Core.Tests
         public async Task GetWeather_IncorrectWeatherLocation_ThrowsLocationNotFoundException()
         {
             // Arrange
+            var json = await File.ReadAllTextAsync(Path.Combine(Environment.CurrentDirectory, "test_error_response.json"));
             var response = new HttpResponseMessage
             {
                 StatusCode = HttpStatusCode.BadRequest,
-                Content = new StringContent(@"[{ ""id"": 1, ""title"": ""Cool post!""}, { ""id"": 100, ""title"": ""Some title""}]"),
+                Content = new StringContent(json),
             };
 
             _httpMessageHandlerMock
@@ -76,15 +80,13 @@ namespace Weather.Core.Tests
                   ItExpr.IsAny<CancellationToken>())
                .ReturnsAsync(response);
 
-            var apiCaller = InitializeSUT();
+            var weatherClient = InitializeSUT();
 
             string testLocation = "NotARealLocation";
 
             // Act
-            var exception = Assert.ThrowsAsync<LocationNotFoundException>(async () => await apiCaller.GetWeather(testLocation));
-
             // Assert
-            Assert.That(exception.Message, Is.EqualTo(ApiCaller.InvalidWeatherLocation));
+            var exception = Assert.ThrowsAsync<InvalidWeatherLocationException>(async () => await weatherClient.GetWeather(testLocation));
         }
     }
 }
