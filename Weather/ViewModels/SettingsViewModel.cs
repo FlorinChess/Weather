@@ -18,11 +18,13 @@ namespace Weather.ViewModels
             get => _isMetricSystemEnabled;
             set
             {
+                // One of the options must be true at all times
+                if (!value && !_isImperialSystemEnabled) return;
+                
                 _isMetricSystemEnabled = value;
 
                 // Only one can be active at the same time
-                if (value)
-                    IsImperialSystemEnabled = false;
+                if (value) IsImperialSystemEnabled = false;
 
                 OnPropertyChanged();
 
@@ -35,11 +37,13 @@ namespace Weather.ViewModels
             get => _isImperialSystemEnabled;
             set
             {
+                // One of the options must be true at all times
+                if (!value && !_isMetricSystemEnabled) return;
+
                 _isImperialSystemEnabled = value;
 
                 // Only one can be active at the same time
-                if (value)
-                    IsMetricSystemEnabled = false;
+                if (value) IsMetricSystemEnabled = false;
 
                 OnPropertyChanged();
             }
