@@ -137,10 +137,5 @@ namespace Weather.ViewModels
         }
 
         #endregion
-
-        public override void Dispose()
-        {
-            base.Dispose();
-        }
     }
 }

@@ -1,9 +1,7 @@
-﻿using Microsoft.Extensions.Caching.Memory;
-using MvvmHelpers.Commands;
+﻿using MvvmHelpers.Commands;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Net.Http;
 using System.Threading.Tasks;
 using Weather.App.Helpers;
 using Weather.App.Models;
@@ -16,7 +14,7 @@ namespace Weather.App.ViewModels
 {
     public sealed class HomeViewModel : BaseViewModel
     {
-        private readonly ApiCaller _apiCaller;
+        private readonly IWeatherClient _weatherClient;
 
         #region Properties
 
@@ -64,9 +62,9 @@ namespace Weather.App.ViewModels
 
         #endregion
 
-        public HomeViewModel()
+        public HomeViewModel(IWeatherClient weatherClient)
         {
-            _apiCaller = new ApiCaller(new HttpClient(), new MemoryCache(new MemoryCacheOptions()));
+            _weatherClient = weatherClient;
 
             WeatherHours = new ObservableCollection<WeatherHour>();
 
@@ -91,7 +89,7 @@ namespace Weather.App.ViewModels
 
                 // pdateLocationSettings();
             }
-            catch (LocationNotFoundException ex)
+            catch (WeatherClientException ex)
             {
                 // MessageBox.Show(ex.Message, "Invalid location", MessageBoxButton.OK, MessageBoxImage.Error);
                 Debug.WriteLine(ex.Message);
@@ -116,7 +114,7 @@ namespace Weather.App.ViewModels
             IsBusy = true;
 
             // Get all the data here
-            Weather = await _apiCaller.GetWeather(_weatherLocation);
+            Weather = await _weatherClient.GetWeather(_weatherLocation);
 
             // Set current weather day
             CurrentWeatherDay = Weather.current;

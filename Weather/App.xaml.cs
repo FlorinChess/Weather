@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Net.Http;
 using System.Windows;
 using Weather.Core;
 using Weather.Stores;
@@ -9,9 +8,6 @@ using Weather.ViewModels;
 
 namespace Weather
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public sealed partial class App : Application
     {
         private readonly IServiceProvider _serviceProvider;
@@ -21,8 +17,9 @@ namespace Weather
 
             services.AddHttpClient();
             services.AddSingleton<IMemoryCache, MemoryCache>();
+            services.AddSingleton<IWeatherClient, WeatherApiClient>();
 
-            services.AddSingleton<ApiCaller>();
+            services.AddSingleton<WeatherApiClient>();
             services.AddSingleton<NavigationStore>();
 
             services.AddTransient<HomeViewModel>();
@@ -38,7 +35,7 @@ namespace Weather
 
             MainWindow = new MainWindow()
             {
-                DataContext = new MainViewModel(this.MainWindow, _serviceProvider.GetRequiredService<NavigationStore>())
+                DataContext = new MainViewModel(MainWindow, _serviceProvider.GetRequiredService<NavigationStore>())
             };
             MainWindow.Show();
             base.OnStartup(e);
