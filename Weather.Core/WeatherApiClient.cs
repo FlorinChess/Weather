@@ -9,28 +9,15 @@ using System.Net;
 
 namespace Weather.Core
 {
-    public sealed class ApiCaller
+    public sealed class WeatherApiClient : IWeatherClient
     {
-        public const string InvalidWeatherLocation = "Invalid weather location! Please enter a different location!";
-        public const string ServerSideError = "Server-side error! Please try again later!";
-        public const string ErrorOccured = "An error occured! Please try again!";
-
-        private readonly IHttpClientFactory _httpClientFactory;
         private readonly IMemoryCache _memoryCache;
         private readonly HttpClient _httpClient;
 
-        public ApiCaller(HttpClient httpClient, IMemoryCache memoryCache)
+        public WeatherApiClient(HttpClient httpClient, IMemoryCache memoryCache)
         {
             _httpClient = httpClient;
             _memoryCache = memoryCache;
-        }
-
-        public ApiCaller(IHttpClientFactory httpClientFactory, IMemoryCache memoryCache)
-        {
-            _httpClientFactory = httpClientFactory;
-            _memoryCache = memoryCache;
-
-            _httpClient = _httpClientFactory.CreateClient();
         }
 
         public async ValueTask<WeatherInformation> GetWeather(string location, string lang = "en")
@@ -59,20 +46,12 @@ namespace Weather.Core
                     ApiError apiError = JsonSerializer.Deserialize<ApiError>(content);
 
                     // Error message that gets displayed depending on the error code
-                    string errorMessage = ErrorOccured;
-
-                    switch (apiError.error.code)
+                    throw apiError.error.code switch
                     {
-                        case 1006:
-                            // Invalid weather location
-                            errorMessage = InvalidWeatherLocation;
-                            break;
-                        case 9999:
-                            // API internal error
-                            errorMessage = ServerSideError;
-                            break;
-                    }
-                    throw new LocationNotFoundException(errorMessage);
+                        1006 => new InvalidWeatherLocationException(),// Invalid weather location
+                        9999 => new ServerSideIssueException(),// API internal error
+                        _ => new ErrorOccuredException(),
+                    };
                 }
                 else
                 {
