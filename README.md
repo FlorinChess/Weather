@@ -22,6 +22,6 @@
 
 ## Third-party libraries and APIs
 
-- <a href="https://www.newtonsoft.com/json">Newtonsoft.Json</a>
+- <a href="https://www.nuget.org/packages/moq/">Moq</a>
 - <a href="https://github.com/jamesmontemagno/mvvm-helpers">MVVM.Helpers</a>
 - <a href="https://www.weatherapi.com/">Weather API</a>
