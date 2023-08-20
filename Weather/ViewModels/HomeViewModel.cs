@@ -16,8 +16,12 @@ namespace Weather.ViewModels
 {
     public sealed class HomeViewModel : BaseViewModel
     {
-        private readonly ApiCaller _apiCaller;
+        #region Private Members
+
+        private readonly IWeatherClient _weatherClient;
         private readonly NavigationStore _navigationStore;
+
+        #endregion Private Members
 
         #region Properties
 
@@ -78,9 +82,9 @@ namespace Weather.ViewModels
 
         #endregion
 
-        public HomeViewModel(NavigationStore navigationStore, ApiCaller apiCaller, IServiceProvider serviceProvider)
+        public HomeViewModel(NavigationStore navigationStore, IWeatherClient weatherClient, IServiceProvider serviceProvider)
         {
-            _apiCaller = apiCaller;
+            _weatherClient = weatherClient;
             _navigationStore = navigationStore;
 
             OpenSettingsCommand = new RelayCommand(_ =>
@@ -114,9 +118,9 @@ namespace Weather.ViewModels
 
                 UpdateLocationSettings();
             }
-            catch (LocationNotFoundException ex)
+            catch (WeatherClientException ex)
             {
-                MessageBox.Show(ex.Message, "Invalid location", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, "An error occured!", MessageBoxButton.OK, MessageBoxImage.Error);
 
                 IsApiCallFinished = true;
             }
@@ -137,7 +141,7 @@ namespace Weather.ViewModels
             IsApiCallFinished = false;
 
             // Get all the data here
-            Weather = await _apiCaller.GetWeather(NormalizedWeatherLocation(_weatherLocation));
+            Weather = await _weatherClient.GetWeather(NormalizedWeatherLocation(_weatherLocation));
 
             // Populate collections after data has been retrieved
             PopulateCollections();
@@ -247,10 +251,5 @@ namespace Weather.ViewModels
         }
 
         #endregion
-
-        public override void Dispose()
-        {
-            base.Dispose();
-        }
     }
 }

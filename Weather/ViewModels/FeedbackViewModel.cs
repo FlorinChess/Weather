@@ -8,9 +8,13 @@ namespace Weather.ViewModels
 {
     public sealed class FeedbackViewModel : BaseViewModel
     {
+        #region Private Members
+
         private readonly string KoFiUrl = "https://ko-fi.com/florin_chess";
         private readonly string FeedbackManagerUrl = "https://feedback-manager.azurewebsites.net";
         private readonly NavigationStore _navigationStore;
+
+        #endregion Private Members
 
         #region Commands
 
@@ -31,6 +35,8 @@ namespace Weather.ViewModels
             CloseCommand = new RelayCommand(_ =>  NavigateHome(serviceProvider));
         }
 
+        #region Private Methods
+
         private void NavigateHome(IServiceProvider serviceProvider)
         {
             _navigationStore.CurrentViewModel = serviceProvider.GetRequiredService<HomeViewModel>();
@@ -44,7 +50,7 @@ namespace Weather.ViewModels
             if (!string.IsNullOrEmpty(path))
             {
                 var split = path.Split('\"');
-                path = split.Length >= 2 ? split[1] : null;
+                path = split.Length >= 2 ? split[1] : string.Empty;
 
                 // Starts the process from the given path in Google Chrome
                 System.Diagnostics.Process.Start(path, url);
@@ -53,9 +59,10 @@ namespace Weather.ViewModels
             {
                 // Start the process in Microsoft Edge
                 // NOTE: this is a workaround; /C to terminate cmd.exe after the command runs
-                // TODO: find a cleaner way to open a url with Edge
                 System.Diagnostics.Process.Start("CMD.exe", $"/C start msedge {url}");
             }
         }
+
+        #endregion Private Methods
     }
 }

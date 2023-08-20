@@ -179,6 +179,8 @@ namespace Weather.ViewModels
             _navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
         }
 
+        #region Private Methods
+
         /// <summary>
         /// If the window resizes to a special position (docked or maximized)
         /// this will update all required property change events to set the borders and radius values
@@ -201,5 +203,7 @@ namespace Weather.ViewModels
         {
             OnPropertyChanged(nameof(CurrentViewModel));
         }
+
+        #endregion Private Methods
     }
 }
