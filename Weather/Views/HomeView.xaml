@@ -218,7 +218,7 @@
                 <ListView 
                     Grid.Row="3"
                     Grid.ColumnSpan="2"
-                    Background="Transparent"
+                    Background="{StaticResource TransparentBrush}"
                     BorderThickness="0"
                     ItemContainerStyle="{StaticResource WeatherCardByHourListViewItem}"
                     ItemsSource="{Binding WeatherHours}"
