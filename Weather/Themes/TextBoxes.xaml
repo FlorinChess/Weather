@@ -25,7 +25,7 @@
                         <Grid>
                             <TextBox
                                 x:Name="textBox"
-                                Background="Transparent"
+                                Background="{StaticResource TransparentBrush}"
                                 BorderThickness="0"
                                 CaretBrush="{StaticResource ForegroundLightBrush}"
                                 Foreground="{StaticResource ForegroundLightBrush}"
@@ -83,7 +83,7 @@
                         <Grid>
                             <TextBox
                                 x:Name="textBox"
-                                Background="Transparent"
+                                Background="{StaticResource TransparentBrush}"
                                 BorderThickness="0"
                                 CaretBrush="{StaticResource ForegroundLightBrush}"
                                 Foreground="{StaticResource ForegroundLightBrush}"
