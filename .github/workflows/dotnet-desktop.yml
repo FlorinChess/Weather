@@ -2,7 +2,6 @@ name: build and test
 
 on:
   push:
-  pull_request:
     branches: [ master ]
     paths:
     - '**.cs'
@@ -27,11 +26,19 @@ jobs:
       with:
         dotnet-version: ${{ env.DOTNET_VERSION }}
 
+    - uses: actions/checkout@v3
+    - name: Set default Xamarin SDK versions
+      run: |
+        $VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.10 --android=10.2
+
     - name: Install dependencies
       run: dotnet restore
       
-    - name: Build
-      run: dotnet build --configuration Release --no-restore
+    - name: Build WPF and Core
+      run: dotnet build Weather/Weather.csproj
+
+    - name: Build Test project
+      run: dotnet build Weather/Weather.Core.Tests.csproj
     
     - name: Test
       run: dotnet test --no-restore --verbosity normal
