@@ -7,26 +7,29 @@
 
     <!-- Material CheckBox -->
     <Style TargetType="{x:Type CheckBox}" x:Key="MaterialCheckBox">
-        <Setter Property="Background" Value="Transparent" />
-        <Setter Property="BorderBrush" Value="{StaticResource ForegroundLightBrush}" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="CheckBox">
-                    <BulletDecorator Background="Transparent">
+                <ControlTemplate TargetType="{x:Type CheckBox}">
+                    <BulletDecorator>
                         <BulletDecorator.Bullet>
                             <Border 
                                 x:Name="Border"
-                                Width="18" Height="18"
-                                Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="1" CornerRadius="2">
+                                Background="{StaticResource TransparentBrush}"
+                                BorderBrush="{StaticResource ForegroundLightBrush }"
+                                BorderThickness="1" 
+                                CornerRadius="2"
+                                Height="18"
+                                SnapsToDevicePixels="True"
+                                UseLayoutRounding="True" 
+                                Width="18">
                                 <Path 
-                                    Width="7" Height="7" 
                                     x:Name="CheckMark"
-                                    SnapsToDevicePixels="True" 
-                                    Stroke="{StaticResource PrimaryBrush}"
-                                    StrokeThickness="2"
-                                    Data="M 0 0 L 7 7 M 0 7 L 7 0" 
+                                    Data="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z" 
+                                    Fill="{StaticResource ForegroundLightBrush}"
+                                    Height="10" 
+                                    Stretch="Fill"
+                                    Visibility="Collapsed"
+                                    Width="12" 
                                     />
                             </Border>
                         </BulletDecorator.Bullet>
@@ -38,16 +41,16 @@
                             />
                     </BulletDecorator>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsChecked" Value="false">
-                            <Setter TargetName="CheckMark" Property="Visibility" Value="Collapsed"/>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="CheckMark" Property="Visibility" Value="Visible"/>
+                            <Setter TargetName="Border" Property="Background" Value="{StaticResource PrimaryBrush}" />
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource PrimaryBrush}" />
+                            <Setter TargetName="Border" Property="BorderThickness" Value="0" />
                         </Trigger>
-                        <Trigger Property="IsChecked" Value="{x:Null}">
-                            <Setter TargetName="CheckMark" Property="Data" Value="M 0 7 L 7 0" />
-                        </Trigger>
-                        <Trigger Property="IsMouseOver" Value="true">
+                        <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource PrimaryLightBrush}" />
                         </Trigger>
-                        <Trigger Property="IsPressed" Value="true">
+                        <Trigger Property="IsPressed" Value="True">
                             <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource PrimaryBrush}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
