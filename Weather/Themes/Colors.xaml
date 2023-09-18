@@ -48,7 +48,12 @@
         <GradientStop Color="{StaticResource Primary}" Offset="0.0" p:Freeze="True" />
         <GradientStop Color="{StaticResource PrimaryLight}" Offset="1.0" p:Freeze="True" />
     </LinearGradientBrush>
-    
+
+    <LinearGradientBrush x:Key="BacklightGradientBrush" StartPoint="0,0" EndPoint="0, 1" p:Freeze="True">
+        <GradientStop Color="{StaticResource Primary}" Offset="0.0" p:Freeze="True" />
+        <GradientStop Color="{StaticResource BackgroundDark}" Offset="1.0" p:Freeze="True" />
+    </LinearGradientBrush>
+
     <!-- Ko-fi -->
     <SolidColorBrush x:Key="KoFiPrimaryBrush" Color="#29abe0" p:Freeze="True" />
     

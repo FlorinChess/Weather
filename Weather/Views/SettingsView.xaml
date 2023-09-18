@@ -54,15 +54,11 @@
                 Content="°C, mm, kph" 
                 IsChecked="{Binding IsMetricSystemEnabled}" d:IsChecked="True"
                 Style="{StaticResource MaterialCheckBox}"
-                FontSize="16"
-                Foreground="White"
                 />
             <CheckBox 
                 Content="°F, in, mph" Margin="30 0"
                 IsChecked="{Binding IsImperialSystemEnabled}"
                 Style="{StaticResource MaterialCheckBox}"
-                FontSize="16"
-                Foreground="White"
                 />
         </StackPanel>
 
