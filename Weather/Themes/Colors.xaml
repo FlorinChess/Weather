@@ -1,50 +1,60 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:p="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options" 
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    mc:Ignorable="p">
 
-    <SolidColorBrush x:Key="ForegroundMainBrush" Color="#686868" />
+    <SolidColorBrush x:Key="ForegroundMainBrush" Color="#686868" p:Freeze="True" />
 
-    <Color x:Key="ForegroundLight">#ffffff</Color>
-    <SolidColorBrush x:Key="ForegroundLightBrush" Color="{StaticResource ForegroundLight}" />
-    
+    <Color x:Key="ForegroundLight" p:Freeze="True">#ffffff</Color>
+    <SolidColorBrush x:Key="ForegroundLightBrush" Color="{StaticResource ForegroundLight}" p:Freeze="True" />
+
+    <SolidColorBrush x:Key="TransparentBrush" Color="Transparent" p:Freeze="True" />
+
     <!-- Material Design Color Palette -->
-    <Color x:Key="BackgroundDark">#121212</Color>
-    <SolidColorBrush x:Key="BackgroundDarkBrush" Color="{StaticResource BackgroundDark}" />
+    <Color x:Key="BackgroundDark" p:Freeze="True">#121212</Color>
+    <SolidColorBrush x:Key="BackgroundDarkBrush" Color="{StaticResource BackgroundDark}" p:Freeze="True" />
 
     <!-- Primary -->
-    <Color x:Key="Primary">#2962ff</Color>
-    <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}" />    
-    <SolidColorBrush x:Key="PrimaryTranslucentBrush" Color="{StaticResource Primary}" Opacity="0.3" />
+    <Color x:Key="Primary" p:Freeze="True">#2962ff</Color>
+    <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}" p:Freeze="True" />
+    <SolidColorBrush x:Key="PrimaryTranslucentBrush" Color="{StaticResource Primary}" Opacity="0.3" p:Freeze="True" />
 
-    <Color x:Key="PrimaryLight">#768fff</Color>
-    <SolidColorBrush x:Key="PrimaryLightBrush" Color="{StaticResource PrimaryLight}" />
+    <Color x:Key="PrimaryLight" p:Freeze="True">#768fff</Color>
+    <SolidColorBrush x:Key="PrimaryLightBrush" Color="{StaticResource PrimaryLight}" p:Freeze="True" />
 
-    <SolidColorBrush x:Key="PrimaryDarkBrush" Color="#0039cb" />
+    <SolidColorBrush x:Key="PrimaryDarkBrush" Color="#0039cb" p:Freeze="True" />
 
     <!-- Secondary -->
-    <SolidColorBrush x:Key="SecondaryBrush" Color="#ffab40" />
+    <SolidColorBrush x:Key="SecondaryBrush" Color="#ffab40" p:Freeze="True" />
 
-    <SolidColorBrush x:Key="SecondaryLightBrush" Color="#ffdd71" />
+    <SolidColorBrush x:Key="SecondaryLightBrush" Color="#ffdd71" p:Freeze="True" />
 
     <!-- Gray tones -->
-    <SolidColorBrush x:Key="ForegroundGrayBrush" Color="LightGray" />
+    <SolidColorBrush x:Key="ForegroundGrayBrush" Color="LightGray" p:Freeze="True" />
 
     <!-- Surfaces -->
-    <SolidColorBrush x:Key="SurfaceGrayBrush" Color="#1f1f1f" />
-    
-    <Color x:Key="SurfaceElevation2">#222222</Color>
-    <SolidColorBrush x:Key="SurfaceElevation2Brush" Color="{StaticResource SurfaceElevation2}" />
+    <SolidColorBrush x:Key="SurfaceGrayBrush" Color="#1f1f1f" p:Freeze="True" />
 
-    <SolidColorBrush x:Key="SurfaceElevation5Brush" Color="#2c2c2c" />
+    <Color x:Key="SurfaceElevation2" p:Freeze="True">#222222</Color>
+    <SolidColorBrush x:Key="SurfaceElevation2Brush" Color="{StaticResource SurfaceElevation2}" p:Freeze="True" />
 
-    <SolidColorBrush x:Key="SurfaceElevation6Brush" Color="#2d2d2d" />
+    <SolidColorBrush x:Key="SurfaceElevation5Brush" Color="#2c2c2c" p:Freeze="True" />
+
+    <SolidColorBrush x:Key="SurfaceElevation6Brush" Color="#2d2d2d" p:Freeze="True" />
 
     <!-- Gradients -->
-    <LinearGradientBrush x:Key="PrimaryToPrimaryLightGradientBrush" StartPoint="0,0" EndPoint="0,1">
-        <GradientStop Color="{StaticResource Primary}" Offset="0.0" />
-        <GradientStop Color="{StaticResource PrimaryLight}" Offset="1.0" />
+    <LinearGradientBrush x:Key="PrimaryToPrimaryLightGradientBrush" StartPoint="0,0" EndPoint="0,1" p:Freeze="True">
+        <GradientStop Color="{StaticResource Primary}" Offset="0.0" p:Freeze="True" />
+        <GradientStop Color="{StaticResource PrimaryLight}" Offset="1.0" p:Freeze="True" />
     </LinearGradientBrush>
-    
+
+    <LinearGradientBrush x:Key="BacklightGradientBrush" StartPoint="0,0" EndPoint="0, 1" p:Freeze="True">
+        <GradientStop Color="{StaticResource Primary}" Offset="0.0" p:Freeze="True" />
+        <GradientStop Color="{StaticResource BackgroundDark}" Offset="1.0" p:Freeze="True" />
+    </LinearGradientBrush>
+
     <!-- Ko-fi -->
-    <SolidColorBrush x:Key="KoFiPrimaryBrush" Color="#29abe0" />
+    <SolidColorBrush x:Key="KoFiPrimaryBrush" Color="#29abe0" p:Freeze="True" />
     
 </ResourceDictionary>
