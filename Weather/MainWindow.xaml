@@ -44,7 +44,7 @@
 
                                     <!-- Corner clipping -->
                                     <Grid.OpacityMask>
-                                        <VisualBrush Visual="{Binding ElementName=Container}" />
+                                        <VisualBrush Visual="{x:Reference Name=Container}" />
                                     </Grid.OpacityMask>
 
                                     <Grid.RowDefinitions>
@@ -103,17 +103,7 @@
                                     </Grid>
 
                                     <!-- Drop shadow -->
-                                    <Border Grid.Row="1" Height="2" BorderThickness="0 0.2 0 0">
-                                        <!-- Drop shadow -->
-                                        <Border.Background>
-                                            <LinearGradientBrush StartPoint="0,0" EndPoint="0, 1">
-                                                <!-- TODO: Make drop shadow black once the color scheme is fixed -->
-                                                <GradientStop Color="{StaticResource Primary}" Offset="0.0" />
-                                                <GradientStop Color="{StaticResource BackgroundDark}" Offset="1.0" />
-                                            </LinearGradientBrush>
-                                        </Border.Background>
-
-                                    </Border>
+                                    <Border Grid.Row="1" Height="2" BorderThickness="0 0.2 0 0" Background="{StaticResource BacklightGradientBrush}" />
 
                                     <!-- Page Content -->
                                     <Border Grid.Row="2" Padding="{Binding InnerContentPadding}">
@@ -137,19 +127,17 @@
             GlassFrameThickness="0"
             />
     </WindowChrome.WindowChrome>    
-    <Grid>
-        <ContentControl Content="{Binding CurrentViewModel}">
-            <ContentControl.Resources>
-                <DataTemplate DataType="{x:Type viewmodels:HomeViewModel}">
-                    <views:HomeView/>
-                </DataTemplate>
-                <DataTemplate DataType="{x:Type viewmodels:SettingsViewModel}">
-                    <views:SettingsView/>
-                </DataTemplate>
-                <DataTemplate DataType="{x:Type viewmodels:FeedbackViewModel}">
-                    <views:FeedbackView/>
-                </DataTemplate>
-            </ContentControl.Resources>
-        </ContentControl>
-    </Grid>
+    <ContentControl Background="{StaticResource TransparentBrush}" Content="{Binding CurrentViewModel}">
+        <ContentControl.Resources>
+            <DataTemplate DataType="{x:Type viewmodels:HomeViewModel}">
+                <views:HomeView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:SettingsViewModel}">
+                <views:SettingsView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:FeedbackViewModel}">
+                <views:FeedbackView/>
+            </DataTemplate>
+        </ContentControl.Resources>
+    </ContentControl>
 </Window>

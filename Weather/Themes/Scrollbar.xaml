@@ -22,7 +22,7 @@
     <Style x:Key="{x:Type ScrollBar}" TargetType="{x:Type ScrollBar}">
         <Setter Property="Stylus.IsFlicksEnabled" Value="false" />
         <Setter Property="Foreground" Value="{StaticResource ForegroundGrayBrush}" />
-        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
         <Setter Property="Width" Value="8" />
         <Setter Property="Template">
             <Setter.Value>

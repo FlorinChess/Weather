@@ -1,7 +1,9 @@
-﻿using MvvmHelpers.Commands;
+﻿using Microsoft.Extensions.Caching.Memory;
+using MvvmHelpers.Commands;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Weather.App.Helpers;
 using Weather.App.Models;
@@ -62,9 +64,9 @@ namespace Weather.App.ViewModels
 
         #endregion
 
-        public HomeViewModel(IWeatherClient weatherClient)
+        public HomeViewModel()
         {
-            _weatherClient = weatherClient;
+            _weatherClient = new WeatherApiClient(new HttpClient(), new MemoryCache(new MemoryCacheOptions()));
 
             WeatherHours = new ObservableCollection<WeatherHour>();
 
